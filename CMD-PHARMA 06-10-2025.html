@@ -1,0 +1,2066 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<style>
+        body {
+            background: #f8f9fa;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+        h1, h2, h4, h5 {
+            font-weight: 600;
+            color: #004085;
+        }
+        label {
+            font-weight: 500;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .step-header, .step-header2 {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .step-header h2, .step-header2 h2 {
+            margin: 0;
+        }
+        select, input[type="text"] {
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .section-divider {
+            border-top: 2px dashed #ccc;
+            margin: 30px 0;
+        }
+        .required-label::after {
+            content: '*';
+            color: #dc3545;
+            margin-left: 3px;
+        }
+		
+    .error {
+        color: red;
+        font-size: 13px;
+        margin-top: 4px;
+        display: block;
+    }
+
+    </style>
+<div id="divProjectCMD" class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-8 col-xl-10">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Customer Master Data Form</h1>
+					<h5 class="text-muted">Pharma</h5>
+                </div>
+			
+            </div>              
+                    <h2 class="text-center step-header2">Organization</h2>
+					
+					<div class="row">
+                      <div class="form-group col-md-2">
+        <label for="ddlCompany">Company Code <span style="color: #dc3545;font-weight: bold;">*</span></label>
+        <select id="ddlCompany" class="form-control" required onchange="updateGrouping()">
+            <option value="">-- Select --</option>
+            <option value="MDL">1000-MDL</option>
+            <option value="MDM">2000-MDM</option>
+		    <option value="MDSPL">3000-MDSPL</option>
+		    <option value="SPL">4000-SPL</option>
+            <option value="WLX">5000-WLX</option>
+			
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="ddlGrouping">Grouping <span style="color: #dc3545;font-weight: bold;">*</span></label>
+        <select id="ddlGrouping" class="form-control" required onchange="updateCustomerReconciliation()">
+              <option value="">-- Select --</option>
+			  
+        </select>
+    </div>
+</div>					
+						 <div class="row">
+				<div class="step-header text-center">
+                <h2>000000 - BP General Role</h2>
+            </div>
+            </div>
+            			<div class="row">
+				  <div class="form-group col-md-4">
+                        <label for="txtName"> Name <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtName"  required>
+                    </div>
+				  
+                  <div class="form-group col-md-3">
+                    <label for="ddlTaxCategory">  Tax Category <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                    <select name="ddlTaxCategory" id="ddlTaxCategory" class="form-control"required>
+                  <option value="">-- Select --</option>
+				 <option value="Aop">Aop</option>
+				 <option value="Individual">Individual</option>
+				 <option value="Company">Company</option>
+				 <option value="Company-Govt">Company-Govt</option>
+				 <option value="Company-Trust">Company-Trust</option>
+                        </select>
+				</div>
+				<div class="form-group col-md-3">
+                        <label for="ddlIncomeTaxStatus">  Income Tax Status <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlIncomeTaxStatus" id="ddlIncomeTaxStatus" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="Filer">Filer</option>
+				 <option value="Non-Filer">Non-Filer</option>
+                        </select>
+                    </div>
+					  <div class="form-group col-md-6">
+                        <label for="inputCode"> Owner Name (if any) <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtOwnerName"  required>
+                    </div>
+				</div>
+
+					<div class="row">
+				    <div class="form-group col-md-6">
+                        <label for="txtAddressLine1">Address Line 1 <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtAddressLine1" required>
+                    </div>
+					
+					 <div class="form-group col-md-6">
+                        <label for="txtAddressLine2">Address Line 2 <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtAddressLine2" required>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="txtProvince">Province<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtProvince" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtPostalCode">Postal Code<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtPostalCode" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtCity">City<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtCity" >               
+                    </div>
+            <div class="form-group col-md-3">
+             <label for="ddlCountry"> Country <span style="color: #dc3545;font-weight: bold;">*</span></label>
+            <select name="ddlCountry" id="ddlCountry" class="form-control" required>
+        <option value="">-- Select --</option>
+        <option value="AD">Andorra</option>
+        <option value="AE">Utd.Arab Emir.</option>
+        <option value="AF">Afghanistan</option>
+        <option value="AG">Antigua/Barbuda</option>
+        <option value="AI">Anguilla</option>
+        <option value="AL">Albania</option>
+        <option value="AM">Armenia</option>
+        <option value="AO">Angola</option>
+        <option value="AQ">Antarctica</option>
+        <option value="AR">Argentina</option>
+        <option value="AS">Samoa, America</option>
+        <option value="AT">Austria</option>
+        <option value="AU">Australia</option>
+        <option value="AW">Aruba</option>
+        <option value="AZ">Azerbaijan</option>
+        <option value="BA">Bosnia-Herz.</option>
+        <option value="BB">Barbados</option>
+        <option value="BD">Bangladesh</option>
+        <option value="BE">Belgium</option>
+        <option value="BF">Burkina Faso</option>
+        <option value="BG">Bulgaria</option>
+        <option value="BH">Bahrain</option>
+        <option value="BI">Burundi</option>
+        <option value="BJ">Benin</option>
+        <option value="BM">Bermuda</option>
+        <option value="BN">Brunei Daruss.</option>
+        <option value="BO">Bolivia</option>
+        <option value="BQ">Bonaire, Saba</option>
+        <option value="BR">Brazil</option>
+        <option value="BS">Bahamas</option>
+        <option value="BT">Bhutan</option>
+        <option value="BW">Botswana</option>
+        <option value="BY">Belarus</option>
+        <option value="BZ">Belize</option>
+        <option value="CA">Canada</option>
+        <option value="CD">Dem. Rep. Congo</option>
+        <option value="CF">CAR</option>
+        <option value="CG">Rep.of Congo</option>
+        <option value="CH">Switzerland</option>
+        <option value="CI">Cote d'Ivoire</option>
+        <option value="CL">Chile</option>
+        <option value="CM">Cameroon</option>
+        <option value="CN">China</option>
+        <option value="CO">Colombia</option>
+        <option value="CR">Costa Rica</option>
+        <option value="CU">Cuba</option>
+        <option value="CV">Cape Verde</option>
+        <option value="CY">Cyprus</option>
+        <option value="CZ">Czech Republic</option>
+        <option value="DE">Germany</option>
+        <option value="DK">Denmark</option>
+        <option value="DO">Dominican Rep.</option>
+        <option value="DZ">Algeria</option>
+        <option value="EC">Ecuador</option>
+        <option value="EG">Egypt</option>
+        <option value="ES">Spain</option>
+        <option value="ET">Ethiopia</option>
+        <option value="FI">Finland</option>
+        <option value="FR">France</option>
+        <option value="GB">United Kingdom</option>
+        <option value="GR">Greece</option>
+        <option value="HK">Hong Kong</option>
+        <option value="HU">Hungary</option>
+        <option value="ID">Indonesia</option>
+        <option value="IE">Ireland</option>
+        <option value="IN">India</option>
+        <option value="IQ">Iraq</option>
+        <option value="IR">Iran</option>
+        <option value="IS">Iceland</option>
+        <option value="IT">Italy</option>
+        <option value="JP">Japan</option>
+        <option value="KE">Kenya</option>
+        <option value="KR">South Korea</option>
+        <option value="KW">Kuwait</option>
+        <option value="LA">Laos</option>
+        <option value="LB">Lebanon</option>
+        <option value="LK">Sri Lanka</option>
+        <option value="LR">Liberia</option>
+        <option value="LT">Lithuania</option>
+        <option value="LU">Luxembourg</option>
+        <option value="LV">Latvia</option>
+        <option value="LY">Libya</option>
+        <option value="MA">Morocco</option>
+        <option value="MD">Moldova</option>
+        <option value="ME">Montenegro</option>
+        <option value="MG">Madagascar</option>
+        <option value="MK">Macedonia</option>
+        <option value="ML">Mali</option>
+        <option value="MM">Burma</option>
+        <option value="MN">Mongolia</option>
+        <option value="MX">Mexico</option>
+        <option value="MY">Malaysia</option>
+        <option value="MZ">Mozambique</option>
+        <option value="NA">Namibia</option>
+        <option value="NE">Niger</option>
+        <option value="NG">Nigeria</option>
+        <option value="NL">Netherlands</option>
+        <option value="NO">Norway</option>
+        <option value="NP">Nepal</option>
+        <option value="NZ">New Zealand</option>
+        <option value="OM">Oman</option>
+        <option value="PA">Panama</option>
+        <option value="PE">Peru</option>
+        <option value="PH">Philippines</option>
+        <option value="PK">Pakistan</option>
+        <option value="PL">Poland</option>
+        <option value="PT">Portugal</option>
+        <option value="QA">Qatar</option>
+        <option value="RO">Romania</option>
+        <option value="RU">Russia</option>
+        <option value="SA">Saudi Arabia</option>
+        <option value="SE">Sweden</option>
+        <option value="SG">Singapore</option>
+        <option value="SI">Slovenia</option>
+        <option value="SK">Slovakia</option>
+        <option value="SO">Somalia</option>
+        <option value="SS">South Sudan</option>
+        <option value="SV">El Salvador</option>
+        <option value="SY">Syria</option>
+        <option value="TH">Thailand</option>
+        <option value="TN">Tunisia</option>
+        <option value="TR">Turkey</option>
+        <option value="TW">Taiwan</option>
+        <option value="TZ">Tanzania</option>
+        <option value="UA">Ukraine</option>
+        <option value="UG">Uganda</option>
+        <option value="US">USA</option>
+        <option value="UY">Uruguay</option>
+        <option value="UZ">Uzbekistan</option>
+        <option value="VE">Venezuela</option>
+        <option value="VN">Vietnam</option>
+        <option value="YE">Yemen</option>
+        <option value="ZA">South Africa</option>
+        <option value="ZM">Zambia</option>
+        <option value="ZW">Zimbabwe</option>
+    </select>
+</div>
+					</div>
+					
+				
+						
+					<div class="row">
+					
+					
+					 <div class="form-group col-md-3">
+                        <label for="txtTelephone">Telephone<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtTelephone" required>               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtCell">Cell</label>
+                        <input type="text" class="form-control" id="txtCell" required >               
+                    </div>
+					</div>
+					 <div class="col">
+                        <h5>Email Address:</h5>
+                    </div>
+					<div class="row">
+					<div class="form-group col-md-6">
+                        <label for="txtEmail">Email(One valid email address)<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtEmail" required >               
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="txtEmail1">Email(Second email)<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtEmail1" required >               
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="txtEmail2">Email(Third email)<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtEmail2" required >               
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="txtEmail3">Email(Fourth email)<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtEmail3" required >               
+                    </div>
+					
+					</div>
+
+					 <div class="col">
+                        <h5>Tax Number:</h5>
+                    </div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory1">  Category 1 <span style="color: #dc3545;font-weight: bold;"></span></label>
+                      <input type="text" id="txtCategory1" value="PK01" disabled>
+                    </div>
+				<div class="form-group col-md-3">
+                        <label for="txtCategory1">CNIC<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtCNIC" placeholder="XXXXX-YYYYYYY-Z" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory2">  Category 2 <span style="color: #dc3545;font-weight: bold;"></span></label>
+                     
+                     <input type="text" id="txtCategory2" value="PK02" disabled>
+
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="txtFBRNTN">FBR-NTN<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtFBRNTN" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory3">  Category 3 <span style="color: #dc3545;font-weight: bold;"></span></label>
+                     
+                     <input type="text" id="txtCategory3" value="PK03" disabled>
+
+                    </div>
+					
+				<div class="form-group col-md-3">
+                        <label for="txtFBRGST">FBR-GST<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtFBRGST" >               
+                    </div>	
+					</div>
+					
+					
+					 <div class="col">
+                        <h5>DSL:</h5>
+                    </div>
+					<div class="row">
+					<div class="form-group col-md-6">
+                        <label for="ddlDSL1">  DSL(Form) <span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <select name="ddlDSL1" id="ddlDSL1" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="000001">000001 - FORM 6</option>
+				 <option value="000002">000002 - FORM 7 A</option>
+				  <option value="000003">000003 - FORM 9</option>
+				   <option value="000004">000004 - FORM 9 A</option>
+				    <option value="000005">000005 - FORM 10</option>
+					 <option value="000006">000006 - FORM 11</option>
+					  <option value="000007">000007 - FORM 20</option>
+					   <option value="000008">000008 - FORM 21</option>
+                        </select>
+                    </div>
+					
+
+				<div class="form-group col-md-3">
+                        <label for="txtValidFrom1">Valid From<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="Date" class="form-control" id="txtValidFrom1" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtValidto1">Valid to<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="Date" class="form-control" id="txtValidto1" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-6">
+                        <select name="ddlDSL2" id="ddlDSL2" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="000001">000001 - FORM 6</option>
+				 <option value="000002">000002 - FORM 7 A</option>
+				  <option value="000003">000003 - FORM 9</option>
+				   <option value="000004">000004 - FORM 9 A</option>
+				    <option value="000005">000005 - FORM 10</option>
+					 <option value="000006">000006 - FORM 11</option>
+					  <option value="000007">000007 - FORM 20</option>
+					   <option value="000008">000008 - FORM 21</option>
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                   
+                        <input type="Date" class="form-control" id="txtValidFrom2" >               
+                    </div>
+					<div class="form-group col-md-3">
+                      
+                        <input type="Date" class="form-control" id ="txtValidto2" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-6">
+                        <select name="ddlDSL3" id="ddlDSL3" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="000001">000001 - FORM 6</option>
+				 <option value="000002">000002 - FORM 7 A</option>
+				  <option value="000003">000003 - FORM 9</option>
+				   <option value="000004">000004 - FORM 9 A</option>
+				    <option value="000005">000005 - FORM 10</option>
+					 <option value="000006">000006 - FORM 11</option>
+					  <option value="000007">000007 - FORM 20</option>
+					   <option value="000008">000008 - FORM 21</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-3">
+                   
+                        <input type="Date" class="form-control" id="txtValidFrom3" >               
+                    </div>
+					<div class="form-group col-md-3">
+                      
+                        <input type="Date" class="form-control" id ="txtValidto3" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-6">
+                        <select name="ddlDSL4" id="ddlDSL4" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="000001">000001 - FORM 6</option>
+				 <option value="000002">000002 - FORM 7 A</option>
+				  <option value="000003">000003 - FORM 9</option>
+				   <option value="000004">000004 - FORM 9 A</option>
+				    <option value="000005">000005 - FORM 10</option>
+					 <option value="000006">000006 - FORM 11</option>
+					  <option value="000007">000007 - FORM 20</option>
+					   <option value="000008">000008 - FORM 21</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-3">
+                        <input type="Date" class="form-control" id="txtValidFrom4" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <input type="Date" class="form-control" id ="txtValidto4" >               
+                    </div>
+					</div>
+				 <div class="row">
+				<div class="step-header text-center">
+                    <h4>ZCUS01 - Customer Role </h4>
+                </div>
+            </div>
+                   <div class="row">
+				</div>
+                  		<div class="row">
+				<div class="form-group col-md-6">
+                        <label for="ddlSalesOrg">  Sales Org-Dist. Channel & Product Division <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesOrg" id="ddlSalesOrg" class="form-control"required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesOrg2">  Sales Org-Dist. Channel & Product Division 2</label>
+                        <select name="ddlSalesOrg2" id="ddlSalesOrg2" class="form-control">
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesOrg3">  Sales Org-Dist. Channel & Product Division 3</label>
+                        <select name="ddlSalesOrg3" id="ddlSalesOrg3" class="form-control">
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div><div class="form-group col-md-6">
+                        <label for="ddlSalesOrg4">  Sales Org-Dist. Channel & Product Division 4</label>
+                        <select name="ddlSalesOrg4" id="ddlSalesOrg4" class="form-control">
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+				<div class="row">
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesDistrict">  Sales District <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select id="ddlSalesDistrict" class="form-control">
+                            <option value="">-- Select --</option>
+				 <option value="1000">1000 - Northern Region</option>
+				 <option value="2000">2000 - Central Region</option>
+				 <option value="3000">3000 - South Region</option>
+				 <option value="4000">4000 - Eastern Region</option>
+				 <option value="5000">5000 - Global Region</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlCustomerGroup">  Customer Group <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlCustomerGroup" id="ddlCustomerGroup" class="form-control"required>
+                            <option value="">-- Select --</option>		 
+ <option value="01">06 - Hospitals</option>
+ <option value="02">07 - Pharmaceuticals</option>
+ <option value="03">01 - Distributor</option>
+ <option value="04">02 - Institutions</option>
+ <option value="05">03 - Export</option>
+ <option value="06">04 - Tender Business</option>
+ <option value="07">05 - Trader</option>
+ <option value="08">08 - Government Institutions</option>
+ <option value="09">09 - Textiles</option>
+ <option value="10">10 - Pathological Labs</option>
+ <option value="11">11 - Cosmetics</option>
+ <option value="12">12 - Food & Beverages</option>
+ <option value="13">13 - Technical</option>
+ <option value="14">14 - Others</option>
+ <option value="15">15 - Government Hosp/Clin</option>
+ <option value="16">16 - Private Hosp/Clin</option>
+ <option value="17">17 - Retail Business</option>
+ <option value="18">18 - Government</option>
+ <option value="19">19 - Govern'nt-University</option>
+ <option value="20">20 - Private Doctor</option>
+ <option value="21">21 - Private Hospital</option>
+ <option value="22">22 - Other 3rd - Private</option></option>
+ <option value="23">23 - Other 3rd - Public</option>
+ <option value="24">24 - Toll</option>
+ <option value="25">25 - Wholesalers</option>
+ <option value="50">50 - Others MDL</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesOffice">  Sales Office (Must align with Sales District) <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name ="ddlSalesOffice" id="ddlSalesOffice" class="form-control" required onchange="updateSalesGroup()">
+                            <option value="">-- Select --</option>
+			 <option value="1000">1000 - Sales Office KHI</option>
+				<option value="2000">2000 - Sales Office LHR</option> 
+				 <option value="3000">3000 - Sales office ISB</option> 
+				 <option value="4000">4000 - Sales Office UET</option> 
+				 <option value="5000">5000 - Sales Office MUX</option> 
+                        </select>
+                    </div>
+						<div  class="form-group col-md-6">
+                        <label for="ddlSalesGroup">  Sales Group (Must align with Sales Office)<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesGroup" id="ddlSalesGroup" class="form-control"required>
+                            <option value="">-- Select --</option>
+
+                        </select>
+                    </div>
+				</div>
+				 <div class="row">
+                
+				<div class="form-group col-md-6">
+                        <label for="ddlDeliveringPlant">  Delivering Plant<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlDeliveringPlant" id="ddlDeliveringPlant" class="form-control"required>
+                            <option value="">-- Select --</option>
+<option value="1000 - 10 - 1100 - MDL – Karachi MFG Facility">1000 - 10 - 1100 - MDL – Karachi MFG Facility</option>
+<option value="1000 - 20 - 1100 - MDL – Karachi MFG Facility">1000 - 20 - 1100 - MDL – Karachi MFG Facility</option>
+<option value="1000 - 30 - 1100 - MDL – Karachi MFG Facility">1000 - 30 - 1100 - MDL – Karachi MFG Facility</option>
+<option value="1000 - 40 - 1100 - MDL – Karachi MFG Facility">1000 - 40 - 1100 - MDL – Karachi MFG Facility</option>
+<option value="2000 - 10 - 2100 - MDML – Head Office, Karachi">2000 - 10 - 2100 - MDML – Head Office, Karachi</option>
+<option value="2000 - 10 - 2200 - MDML – Lahore Warehouse">2000 - 10 - 2200 - MDML – Lahore Warehouse</option>
+<option value="2000 - 10 - 2300 - MDML – Karachi MFG Facility">2000 - 10 - 2300 - MDML – Karachi MFG Facility</option>
+<option value="2000 - 10 - 2400 - MDML – Quetta MFG Facility">2000 - 10 - 2400 - MDML – Quetta MFG Facility</option>
+<option value="2000 - 10 - 2500 - MDML – Virtual Plant, SPL">2000 - 10 - 2500 - MDML – Virtual Plant, SPL</option>
+<option value="2000 - 20 - 2100 - MDML – Head Office, Karachi">2000 - 20 - 2100 - MDML – Head Office, Karachi</option>
+<option value="2000 - 20 - 2200 - MDML – Lahore Warehouse">2000 - 20 - 2200 - MDML – Lahore Warehouse</option>
+<option value="2000 - 20 - 2300 - MDML – Karachi MFG Facility">2000 - 20 - 2300 - MDML – Karachi MFG Facility</option>
+<option value="2000 - 20 - 2400 - MDML – Quetta MFG Facility">2000 - 20 - 2400 - MDML – Quetta MFG Facility</option>
+<option value="2000 - 20 - 2500 - MDML – Virtual Plant, SPL">2000 - 20 - 2500 - MDML – Virtual Plant, SPL</option>
+<option value="5000 - 10 - 5100 - WL - Head Office, Karachi">5000 - 10 - 5100 - WL - Head Office, Karachi</option>
+<option value="5000 - 20 - 5100 - WL - Head Office, Karachi">5000 - 20 - 5100 - WL - Head Office, Karachi</option>
+<option value="5000 - 30 - 5100 - WL - Head Office, Karachi">5000 - 30 - 5100 - WL - Head Office, Karachi</option>
+<option value="5000 - 40 - 5100 - WL - Head Office, Karachi">5000 - 40 - 5100 - WL - Head Office, Karachi</option>
+                        </select>
+                    </div>
+			</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+                        <label for="ddlincoterms">Incoterms<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlincoterms" id="ddlincoterms" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="LCL">LCL - Local</option>
+				 <option value="CFR">CFR - Costs and freight</option>
+				<option value="CIF">CIF - Costs, insurance & freight</option>		
+				 <option value="CIP">CIP - Carriage and insurance paid to</option>			
+		         <option value="CPT">CPT - Carriage paid to</option>	
+		         <option value="DAF">DAF - Delivered at frontier</option>	
+		         <option value="DDF">DDF - Delivered Duty Paid</option>	
+		         <option value="DDU">DDU - Delivered Duty Unpaid</option>	
+		         <option value="DEQ">DEQ - Delivered ex quay (duty paid)</option>	
+		         <option value="DES">DES - Delivered ex ship</option>			 
+			 	 <option value="EXW">EXW - Ex Works</option>		
+			     <option value="FAS">FAS - Free Alongside Ship</option>		
+			     <option value="FCA">FCA - Free Carrier</option>		
+	         	 <option value="FH">FH - Free house</option>		
+			     <option value="FOB">FOB - Free on board</option>		
+			     <option value="UN">UN - Not Free</option>		
+                        </select>
+                    </div>
+						<div class="form-group col-md-6">
+                        <label for="ddlPaymentTerms"> Payment Terms<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlPaymentTerms" id="ddlPaymentTerms" class="form-control"required>
+                            <option value="">-- Select --</option>
+<option value="0010">0011 - 5 Months Installment</option>
+<option value="0011">0010 - 4 Months Installment</option>
+<option value="0012">0012 - 7 Months Installment</option>
+<option value="0013">0013 - 8 Months Installment</option>
+<option value="0014">0014 - 9 Months Installment</option>
+<option value="0015">0015 - 10 Months Installment</option>
+<option value="0016">0016 - 11 Months Installment</option>
+<option value="0017">0017 - 13 Months Installment</option>
+<option value="0018">0018 - 14 Months Installment</option>
+<option value="0019">0019 - 15 Months Installment</option>
+<option value="0020">0020 - 16 Months Installment</option>
+<option value="0021">0021 - 17 Months Installment</option>
+<option value="0022">0022 - 20 Months Installment</option>
+<option value="0023">0023 - 24 Months Installment</option>
+<option value="0024">0024 - 20 Months Installment</option>
+<option value="C001">C001 - Payable immediately Due net</option>
+<option value="C002">C002 - Letter of Credit at Sight</option>
+<option value="C003">C003 - within 30 days Due net</option>
+<option value="C004">C004 - within 45 days Due net</option>
+<option value="C005">C005 - within 50 days Due net</option>
+<option value="C006">C006 - within 60 days Due net</option>
+<option value="C007">C007 - within 75 days Due net</option>
+<option value="C008">C008 - within 90 days Due net</option>
+<option value="C009">C009 - within 120 days Due net</option>
+<option value="C010">C010 - within 150 days Due net</option>
+<option value="C011">C011 - within 180 days Due net</option>
+<option value="C012">C012 - within 7 days Due net</option>
+<option value="C013">C013 - within 10 days Due net</option>
+<option value="C014">C014 - within 30 days Due net</option>
+<option value="C015">C015 - within 45 days Due net</option>
+<option value="C016">C016 - within 50 days Due net</option>
+<option value="C017">C017 - within 60 days Due net</option>
+<option value="C018">C018 - within 75 days Due net</option>
+<option value="C019">C019 - within 90 days Due net</option>
+<option value="C020">C020 - within 120 days Due net</option>
+<option value="C021">C021 - within 180 days Due net</option>
+<option value="C022">C022 - within 240 days Due net</option>
+<option value="C023">C023 - within 365 days Due net</option>
+<option value="C024">C024 - within 450 days Due net</option>
+<option value="C025">C025 - Advance Payment</option>
+<option value="C026">C026 - within 30 days Due net</option>
+<option value="C027">C027 - within 30 days Due net</option>
+<option value="C028">C028 - Payable in 2 partial amounts</option>
+<option value="C029">C029 - Payable in 2 partial amounts</option>
+<option value="C030">C030 - Payable in 3 partial amounts</option>
+<option value="C031">C031 - Payable in 3 partial amounts</option>
+<option value="C032">C032 - Payable in 3 partial amounts</option>
+<option value="C034">C034 - Payable in 4 partial amounts</option>
+<option value="C035">C035 - Payable in 4 partial amounts</option>
+<option value="C036">C036 - Payable in 4 partial amounts</option>
+<option value="C037">C037 - Payable in 4 partial amounts</option>
+<option value="C038">C038 - Payable in 5 partial amounts</option>
+<option value="C039">C039 - Payable in 6 partial amounts</option>
+<option value="C040">C040 - Payable in 10 partial amounts</option>
+<option value="C041">C041 - Payable in 10 partial amounts</option>
+<option value="C042">C042 - Payable in 10 partial amounts</option>
+<option value="C043">C043 - Payable in 10 partial amounts</option>
+<option value="C044">C044 - Payable in 18 partial amounts</option>
+<option value="C045">C045 - Payable in 24 partial amounts</option>
+<option value="C046">C046 - Payable in 30 partial amounts</option>
+<option value="C047">C047 - Payable in 36 partial amounts</option>
+<option value="C048">C048 - Payable in 18 partial amounts</option>
+<option value="C049">C049 - Within 210 Days Due Date</option>
+<option value="C050">C050 - Within 270 Days Due Date</option>
+<option value="C051">C051 - Within 300 Days Due Date</option>
+<option value="C052">C052 - Within 330 Days Due Date</option>
+<option value="C053">C053 - Within 360 Days Due Date</option>
+<option value="C054">C054 - Within 390 Days Due Date</option>
+<option value="C055">C055 - Within 420 Days Due Date</option>
+<option value="C056">C056 - Within 450 Days Due Date</option>
+<option value="C057">C057 - Within 480 Days Due Date</option>
+<option value="C058">C058 - Within 510 Days Due Date</option>
+<option value="C059">C059 - Within 540 Days Due Date</option>
+<option value="C060">C060 - Within 570 Days Due Date</option>
+<option value="C061">C061 - Within 600 Days Due Date</option>
+<option value="C062">C062 - Within 630 Days Due Date</option>
+<option value="C063">C063 - Within 660 Days Due Date</option>
+<option value="C064">C064 - Within 690 Days Due Date</option>
+<option value="C065">C065 - Within 720 Days Due Date</option>
+<option value="C070">C070 - Pay 750 days aftr Invcing Date</option>
+<option value="C071">C071 - Pay 780 days aftr Invcing Date</option>
+<option value="C072">C072 - Pay 810 days aftr Invcing Date</option>
+<option value="C073">C073 - Pay 840 days aftr Invcing Date</option>
+<option value="C074">C074 - Pay 870 days aftr Invcing Date</option>
+<option value="C075">C075 - Pay 900 days aftr Invcing Date</option>
+<option value="C107">C107 - 90 Days After Receipt of Bill</option>
+<option value="C108">C108 - Within 15 Days Due Date</option>
+<option value="C109">C109 - Paym 3 Month aftr Invcing Date</option>
+<option value="I001">I001 - within 30 days Due net</option>
+<option value="I002">I002 - within 90 days Due net</option>
+<option value="I003">I003 - within 20 days Due net</option>
+<option value="I004">I004 - within 60 days Due net</option>
+<option value="I005">I005 - within 120 days Due net</option>
+<option value="I006">I006 - within 30 days Due net</option>
+<option value="I007">I007 - within 45 days Due net</option>
+<option value="I008">I008 - within 90 days Due net</option>
+<option value="I009">I009 - within 135 days Due net</option>
+<option value="I010">I010 - within 20 days Due net</option>
+<option value="I011">I011 - within 25 days Due net</option>
+<option value="I012">I012 - within 27 days Due net</option>
+<option value="I013">I013 - within 30 days Due net</option>
+<option value="I014">I014 - within 36 days Due net</option>
+<option value="I015">I015 - within 54 days Due net</option>
+<option value="V037">V037 - LC at 180 Days from Invoice date</option>
+<option value="Z001">Z001 - Bank Contract</option>
+<option value="Z300">Z300 - Pybl in 12 instal ovr 365 Days</option>
+<option value="Z400">Z400 - Pybl in 18 instal ovr 545 Days</option>
+<option value="Z500">Z500 - Pybl in 30 instal ovr 912 Days</option>
+                 </select>
+                    </div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+                      <label for="ddlAcctAsst"> Acct Assmt Grp Cust.<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlAcctAsst" id="ddlAcctAsst" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="01">01 - Domestic Revenues</option>
+				 <option value="02">02 - Foreign Revenues</option>
+				 <option value="03">03 - Affiliat Comp Revenues</option>				  
+                        </select>
+                    </div>
+			</div>
+				<div class="row">
+				
+					<div class="form-group col-md-3">
+                        <label for="ddlMWST"> MWST<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlMWST" id="ddlMWST" class="form-control"required>
+                <option value="">-- Select --</option>
+				<option value="0">0 - Tax Exempt</option>
+				 <option value="1">1 - Liable for Taxes</option>
+				 <option value="2">2 - Sales Tax @ 1%</option>
+				 <option value="3">3 - Exempt Sales Tax 1%</option>	
+				 <option value="4">4 - S.Tax for FATA/PATA</option>					 
+                        </select>
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="ddlZMWS">ZMWS<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZMWS" id="ddlZMWS" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="1">1- Unregistered</option>
+				 <option value="2">2 - Registered</option>
+				 <option value="3">3 - Exempted</option>
+                 <option value="4">4 - Govt. Institute</option>
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="ddlZMST">ZMST<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZMST" id="ddlZMST" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="3">3 - Filer Dealer</option>
+				 <option value="4">4 - Non Filer Dealer</option>
+				 <option value="5">5 - End User/Govt/Tribal</option>			
+                 <option value="6">6 - Filer TM</option>	
+                 <option value="7">7 - Non Filer TM</option>	
+ 
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="ddlZPK2"> ZPK2<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZPK2" id="ddlZPK2" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="1">1 - Exempt Further Tax</option>
+				 <option value="0">0 - Further Sales Tax 3%</option>
+							  
+                        </select>
+                    </div>
+				<div class="row">
+				   <div class="form-group col-md-6">
+                        <label for="ddlpartnerfunction1">Partner Functions 1</label>
+                        <select name="ddlpartnerfunction1" id="ddlpartnerfunction1" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="SP">SP - Sold-to party</option>
+        <option value="BP">BP - Bill-to party</option>
+        <option value="PY">PY - Payer</option>
+        <option value="SH">SH - Ship-to party</option>
+        <option value="CP">CP - Contact person</option>
+        <option value="AW">AW - SH Contract rel. ord</option>
+        <option value="ED">ED - EDI mail recipient</option>
+        <option value="BU">BU - Buyer</option>
+        <option value="EU">EU - Enduser for F.Trade</option>
+        <option value="VN">VN - Vendor</option>
+        <option value="Q1">Q1 - QtyCertRec/shpTo pt</option>
+        <option value="Q2">Q2 - QtyCertRec/soldTo pt</option>
+        <option value="SB">SB - Spec.stock partner</option>
+        <option value="CR">CR - Forwarding Agent</option>
+        <option value="SE">SE - Sales employee</option>
+        <option value="ER">ER - Employee respons.</option>
+        <option value="AA">AA - SP Contract rel. ord</option>
+                        </select>
+                    </div>
+				 <div class="form-group col-md-6">
+                        <label for="txtCustomerNum1">  Customer # </label>
+                      <input type="text" id="txtCustomerNum1"  class="form-control">
+                    </div>
+					</div>
+				 	<div class="row">
+				 <div class="form-group col-md-6 ">
+                        <label for="ddlpartnerfunction2">Partner Functions 2</label>
+                        <select name="ddlpartnerfunction2" id="ddlpartnerfunction2" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="SP">SP - Sold-to party</option>
+        <option value="BP">BP - Bill-to party</option>
+        <option value="PY">PY - Payer</option>
+        <option value="SH">SH - Ship-to party</option>
+        <option value="CP">CP - Contact person</option>
+        <option value="AW">AW - SH Contract rel. ord</option>
+        <option value="ED">ED - EDI mail recipient</option>
+        <option value="BU">BU - Buyer</option>
+        <option value="EU">EU - Enduser for F.Trade</option>
+        <option value="VN">VN - Vendor</option>
+        <option value="Q1">Q1 - QtyCertRec/shpTo pt</option>
+        <option value="Q2">Q2 - QtyCertRec/soldTo pt</option>
+        <option value="SB">SB - Spec.stock partner</option>
+        <option value="CR">CR - Forwarding Agent</option>
+        <option value="SE">SE - Sales employee</option>
+        <option value="ER">ER - Employee respons.</option>
+        <option value="AA">AA - SP Contract rel. ord</option>
+                        </select>
+                    </div>
+				 <div class="form-group col-md-6">
+                        <label for="txtCustomerNum2">  Customer # </label>
+                      <input type="text" id="txtCustomerNum2"  class="form-control">
+                    </div>
+				</div>
+				</div>
+                    <h2 class="text-center  step-header2">ZFICO1</h2>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="ddlReconcilation">Reconciliation Account<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                <select id="ddlReconcilation" class="form-control" >
+				  <option value="">-- Select --</option>
+    </select>
+
+        </div>
+</div>
+   <h2 class="text-center  step-header2">UKM000- SAP Credit Mgmt</h2>
+
+    <div class="row">
+		 <div class="form-group col-md-4">
+        <label for="ddlCreditSegment">Credit Segment <span style="color: #dc3545;font-weight: bold;">*</span></label>
+        <select id="ddlCreditSegment" class="form-control">
+              <option value="">-- Select --</option> 
+        </select>
+    </div>
+   <div class="form-group col-md-4">
+    <label>Credit Limit & Control</label>
+    <select id="ddlCreditLimit" class="form-control" onchange="toggleLimitField()">
+        <option value="NotDefined">Limit Not Defined</option>
+        <option value="defined">Limit Defined</option>
+    </select>
+</div>
+<div class="form-group col-md-4">
+    <label for="txtLimit">Limit <span style="color: #dc3545;font-weight: bold;">*</span></label>
+    <input type="Number" class="form-control" id="txtLimit" disabled>
+    <small id="limitError" class="text-danger" style="display: none;">Limit is required</small>
+</div>
+    <div class="row">
+        <div class="form-group col-md-8">
+            <h4>Security (for Distributor/Trader)</h4>
+            <div class="form-check">
+                <input type="checkbox" id="chkPromissoryNote" name="Security" value="PromissoryNote" class="form-check-input">
+                <label for="chkPromissoryNote" class="form-check-label">Promissory Note Attached</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkBankGuarantee" name="Security" value="BankGuarantee"  class="form-check-input">
+                <label for="chkBankGuarantee" >Bank Guarantee Up to the Credit Limit</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkInlandLC" name="Security" value="InlandLC"  class="form-check-input">
+                <label for="chkInlandLC" >Inland LC for Each Transaction</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkCheques"  name="Security" value="UndatedCheques"  class="form-check-input" >
+                <label for="chkCheques" >Undated Cheques Covering the Credit Limit</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+	
+	 <div class="container">
+		<div class="form-group col-md-12">
+        <h4>Attached Documents (tick the relevant)</h4>
+	<br/>
+	<br/>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+       <div class="form-check">
+            <input type="checkbox" id="agreement" name="Attachments" value="Agreement" class="form-check-input">
+            <label for="agreement">Copy of Agreement (If Distributor)</label>
+        </div>
+		<br/>
+         <div class="form-check">
+            <input type="checkbox" id="NTN" name="Attachments" value="NTN" class="form-check-input">
+            <label for="NTN">NTN / CNIC / FTN Attached, ATL (ST & IT), Exempt. Cert. (if applicable)</label>
+        </div>
+		
+		  <div class="form-check">
+            <input type="checkbox" id="security" name="Attachments" value="Security" class="form-check-input" >
+            <label for="security">Please Attach Security [For Credit Business Only (Trader/Dist.) Original Instrument Submit to Treasury [Receiving Attached]
+        </label>
+        </div>
+		 <div class="form-check">
+            <input type="checkbox" id="dSLAttached" name="Attachments" value="DSLAttached" class="form-check-input" >
+            <label for="dSLAttached">Valid DSL Attached
+        </label>
+        </div>
+        <div class="form-check">
+		      <input type="checkbox" id="Statement" name="Attachments" value="Statement" class="form-check-input">
+            <label for="Statement"> Account Statement / Bank Account Maintenance Certificate. [for Credit Customers (Trader/Dist)]</label>
+        </div>
+      
+         <div class="form-check">
+            <input type="checkbox" id="OpeningRequest" name="Attachments" value="OpeningRequest" class="form-check-input">
+            <label for="OpeningRequest">Account Opening request letter from customer, PO / Tender copy (where applicable)</label>
+        </div>
+    </div>
+</div>   
+       <div class="form-group col-md-6">
+					
+               			<input type="file" id="fileAttachmentInput" multiple />
+						   </div>
+						   <div id="attachmentContainer"></div>
+    </div>
+    </div>
+<div class="form-group col-md-10">
+    <label for="txtComment">Comment<span style="color: #dc3545;font-weight: bold;">*</span></label>
+    <textarea class="form-control" id="txtComment" placeholder="Enter your comment..." ></textarea>
+</div>
+  <p class="text-danger"><strong>Note:</strong>Mandatory Fields are required to be filled.</p>
+
+	 <div class="row">
+                    <div class="col-12 text-Center">
+                            <!-- <button id="btnSave" type="submit" class="btn btn-primary" style="display:none;">Save as draft</button> -->
+                        
+						<button id="btnSubmit" type="submit" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#submitModal">Submit</button>
+                            <!-- <button id="btnApproved" type="submit" class="btn btn-success" style="display:none;">Approve</button> -->
+                            <!-- <button id="btnRejected" type="submit" class="btn btn btn-danger" style="display:none;">Reject</button> -->
+                         <!-- <button id="btnBackTo" type="button" class="btn btn-info" onclick="window.location.href='https://martindowgroup.sharepoint.com/sites/ServiceSpot/Lists/CUSTOMERMASTERDATAMDML/AllItems.aspx'">My Requests</button> -->
+                    </div>
+</div>			
+			</div>
+<script>
+    function toggleLimitField() {
+        var ddl = document.getElementById("ddlCreditLimit");
+        var txtLimit = document.getElementById("txtLimit");
+        var limitError = document.getElementById("limitError");
+
+        if (ddl.value === "defined") {
+            txtLimit.disabled = false;
+            txtLimit.setAttribute("required", "required");
+        } else {
+            txtLimit.disabled = true;
+            txtLimit.removeAttribute("required");
+            txtLimit.value = ""; // Clear the field when disabled
+            limitError.style.display = "none";
+        }
+    }
+    document.querySelector("form")?.addEventListener("submit", function (event) {
+        var txtLimit = document.getElementById("txtLimit");
+        var limitError = document.getElementById("limitError");
+
+        if (!txtLimit.disabled && txtLimit.value.trim() === "") {
+            limitError.style.display = "block";
+            event.preventDefault(); // Prevent form submission
+        } else {
+            limitError.style.display = "none";
+        }
+    });
+
+	 function updateGrouping(selectedValue){
+	 debugger
+        var company = document.getElementById("ddlCompany").value;
+        var ddlGrouping = document.getElementById("ddlGrouping");
+
+        ddlGrouping.innerHTML = '<option value="">-- Select --</option>';
+<!-- ddlGrouping.options.length = 0; -->
+		 var groupings = {
+
+            "MDL": ["ZC10 MDL - Customer - Pharmaceutical","ZC12 MDL - Customer - Direct","ZC13 MDL - Customer - Institutions","ZC14 MDL - Customer - Export","ZC15 MDL - Customer - Other","ZC16 MDL - Customer - Toll","ZC17 MDL - Customer - Ind. Hospital"],  
+            "MDM": ["ZC01 MDM - Customer - Pharmaceutical","ZC03 MDM - Customer - Direct","ZC04 MDM - Customer - Institutions","ZC05 MDM - Customer - Export","ZC04 MDM - Customer - Institutions (Distributor)"],  
+			"WLX": ["WN20 WL - Customer - Local","WN21 WL - Customer - Direct","WN22 WL - Customer - Institutions","WN23 WL - Customer - Export","WN24 WL - Customer - Consumer","WN22 WL - Customer - Institutions (Distributor)"],
+	        "SPL": ["RD01 SPL - Regional Distributor","PK01 SPL - Local Customer","PK05 SPL - Indirect Hospital"],
+			"MDSPL": ["YC01 MDSPL - Customer - Pharmaceutical","YC06 - MDSPL - Customer - DPI"]
+        };
+       if (company in groupings) {
+        groupings[company].forEach(function (group) {
+            var option = document.createElement("option");
+            option.value = group;
+            option.textContent = group;
+            ddlGrouping.appendChild(option);
+        });
+        }
+		  if (selectedValue) {
+        ddlGrouping.value = selectedValue;
+    }
+		
+//for 1
+ddlSalesOrg.options.length = 0;
+		var groupingsss = {
+
+           "MDL": ["1000 MDL - 10 Local - 10 Pharmaceuticals","1000 MDL - 10 Local - 12 Tender Business","1000 MDL - 10 Local - 13 Trading Division","1000 MDL - 10 Local - 15 Consumer Goods","1000 MDL - 10 Local - 50 Medical Device","1000 MDL - 20 Export - 10 Pharmaceuticals","1000 MDL - 20 Export - 13 Trading Division","1000 MDL - 20 Export - 14 Export","1000 MDL - 20 Export - 15 Consumer Goods","1000 MDL - 20 Export - 50 Medical Device"],  
+           "MDM": ["2000 MDML - 10 Local - 10 Pharmaceuticals","2000 MDML - 20 Export - 10 Pharmaceuticals"],  
+           "WLX": ["5000 Welnox Ltd. - 10 Local - 10 Pharmaceuticals","5000 Welnox Ltd. - 10 Local - 13 Trading Division","5000 Welnox Ltd. - 10 Local - 15 Consumer Goods","5000 Welnox Ltd. - 20 Export - 13 Trading Division","5000 Welnox Ltd. - 20 Export - 14 Export","5000 Welnox Ltd. - 20 Export - 15 Consumer Goods","5000 Welnox Ltd. - 30 Tender Business - 12 Tender Business","5000 Welnox Ltd. - 40 Trading DC - 13 Trading Division"]
+        };
+        if (company in groupingsss) {
+            groupingsss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlSalesOrg.appendChild(option);
+            });
+        }
+		
+//for 2
+ddlSalesOrg2.options.length = 0;
+		var groupingsss = {
+
+           "MDL": ["1000 MDL - 10 Local - 10 Pharmaceuticals","1000 MDL - 10 Local - 12 Tender Business","1000 MDL - 10 Local - 13 Trading Division","1000 MDL - 10 Local - 15 Consumer Goods","1000 MDL - 10 Local - 50 Medical Device","1000 MDL - 20 Export - 10 Pharmaceuticals","1000 MDL - 20 Export - 13 Trading Division","1000 MDL - 20 Export - 14 Export","1000 MDL - 20 Export - 15 Consumer Goods","1000 MDL - 20 Export - 50 Medical Device"],  
+           "MDM": ["2000 MDML - 10 Local - 10 Pharmaceuticals","2000 MDML - 20 Export - 10 Pharmaceuticals"],  
+           "WLX": ["5000 Welnox Ltd. - 10 Local - 10 Pharmaceuticals","5000 Welnox Ltd. - 10 Local - 13 Trading Division","5000 Welnox Ltd. - 10 Local - 15 Consumer Goods","5000 Welnox Ltd. - 20 Export - 13 Trading Division","5000 Welnox Ltd. - 20 Export - 14 Export","5000 Welnox Ltd. - 20 Export - 15 Consumer Goods","5000 Welnox Ltd. - 30 Tender Business - 12 Tender Business","5000 Welnox Ltd. - 40 Trading DC - 13 Trading Division"]
+        };
+        if (company in groupingsss) {
+            groupingsss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlSalesOrg2.appendChild(option);
+            });
+        }
+//for 3
+
+ddlSalesOrg3.options.length = 0;
+		var groupingsss = {
+
+           "MDL": ["1000 MDL - 10 Local - 10 Pharmaceuticals","1000 MDL - 10 Local - 12 Tender Business","1000 MDL - 10 Local - 13 Trading Division","1000 MDL - 10 Local - 15 Consumer Goods","1000 MDL - 10 Local - 50 Medical Device","1000 MDL - 20 Export - 10 Pharmaceuticals","1000 MDL - 20 Export - 13 Trading Division","1000 MDL - 20 Export - 14 Export","1000 MDL - 20 Export - 15 Consumer Goods","1000 MDL - 20 Export - 50 Medical Device"],  
+           "MDM": ["2000 MDML - 10 Local - 10 Pharmaceuticals","2000 MDML - 20 Export - 10 Pharmaceuticals"],  
+           "WLX": ["5000 Welnox Ltd. - 10 Local - 10 Pharmaceuticals","5000 Welnox Ltd. - 10 Local - 13 Trading Division","5000 Welnox Ltd. - 10 Local - 15 Consumer Goods","5000 Welnox Ltd. - 20 Export - 13 Trading Division","5000 Welnox Ltd. - 20 Export - 14 Export","5000 Welnox Ltd. - 20 Export - 15 Consumer Goods","5000 Welnox Ltd. - 30 Tender Business - 12 Tender Business","5000 Welnox Ltd. - 40 Trading DC - 13 Trading Division"]
+        };
+        if (company in groupingsss) {
+            groupingsss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlSalesOrg3.appendChild(option);
+            });
+        }
+		
+		//for 4
+		
+	ddlSalesOrg4.options.length = 0;
+		var groupingsss = {
+
+           "MDL": ["1000 MDL - 10 Local - 10 Pharmaceuticals","1000 MDL - 10 Local - 12 Tender Business","1000 MDL - 10 Local - 13 Trading Division","1000 MDL - 10 Local - 15 Consumer Goods","1000 MDL - 10 Local - 50 Medical Device","1000 MDL - 20 Export - 10 Pharmaceuticals","1000 MDL - 20 Export - 13 Trading Division","1000 MDL - 20 Export - 14 Export","1000 MDL - 20 Export - 15 Consumer Goods","1000 MDL - 20 Export - 50 Medical Device"],  
+           "MDM": ["2000 MDML - 10 Local - 10 Pharmaceuticals","2000 MDML - 20 Export - 10 Pharmaceuticals"],  
+           "WLX": ["5000 Welnox Ltd. - 10 Local - 10 Pharmaceuticals","5000 Welnox Ltd. - 10 Local - 13 Trading Division","5000 Welnox Ltd. - 10 Local - 15 Consumer Goods","5000 Welnox Ltd. - 20 Export - 13 Trading Division","5000 Welnox Ltd. - 20 Export - 14 Export","5000 Welnox Ltd. - 20 Export - 15 Consumer Goods","5000 Welnox Ltd. - 30 Tender Business - 12 Tender Business","5000 Welnox Ltd. - 40 Trading DC - 13 Trading Division"]
+        };
+        if (company in groupingsss) {
+            groupingsss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlSalesOrg4.appendChild(option);
+            });
+        }
+		
+
+		ddlDeliveringPlant.options.length = 0;
+		var groupingssss = {
+
+           "MDL": ["1000 - 10 - 1100 - MDL – Karachi MFG Facility","1000 - 20 - 1100 - MDL – Karachi MFG Facility","1000 - 30 - 1100 - MDL – Karachi MFG Facility","1000 - 40 - 1100 - MDL – Karachi MFG Facility","2000 - 20 - 2100 - MDML – Head Office, Karachi"],  
+           "MDM": ["2000 - 10 - 2100 - MDML – Head Office, Karachi","2000 - 10 - 2200 - MDML – Lahore Warehouse","2000 - 10 - 2300 - MDML – Karachi MFG Facility","2000 - 10 - 2300 - MDML – Karachi MFG Facility","2000 - 10 - 2400 - MDML – Quetta MFG Facility","2000 - 10 - 2500 - MDML – Virtual Plant, SPL","2000 - 20 - 2200 - MDML – Lahore Warehouse","2000 - 20 - 2300 - MDML – Karachi MFG Facility","2000 - 20 - 2400 - MDML – Quetta MFG Facility","2000 - 20 - 2500 - MDML – Virtual Plant, SPL"],  
+           "WLX": ["5000 - 10 - 5100 - WL - Head Office, Karachi","5000 - 20 - 5100 - WL - Head Office, Karachi","5000 - 30 - 5100 - WL - Head Office, Karachi","5000 - 40 - 5100 - WL - Head Office, Karachi"]
+
+        };
+        if (company in groupingssss) {
+            groupingssss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlDeliveringPlant.appendChild(option);
+            });
+        }
+		ddlCreditSegment.options.length = 0;
+		var groupingsssss = {
+
+           "MDL": ["MDL1  Credit Segment MDL"],  
+           "MDM": ["ZAK1 Credit Segment MDM"],  
+           "WLX": ["ZWL1  Credit Segment WLX"],
+		   "MDSPL": ["ZAK1  Credit Segment MDSPL"],
+           "SPL": ["Credit Segment SPL"]
+        };
+        if (company in groupingsssss) {
+            groupingsssss[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlCreditSegment.appendChild(option);
+            });
+        }
+    }
+	function updateCustomerReconciliation(){
+        var Grouping = document.getElementById("ddlGrouping").value;
+        var ddlReconcilation = document.getElementById("ddlReconcilation");
+
+       ddlReconcilation.options.length = 0;
+        var groupings = {
+		    "WN20 WL - Customer - Local":["1033000010  Accounts Receivable - Local"],
+            "WN21 WL - Customer - Direct": ["1033000003 Accounts receivable - Direct"],  
+            "WN22 WL - Customer - Institutions": ["1033000005  Accounts receivable - Institutions"],  
+			"WN22 WL - Customer - Institutions (Distributor)": ["1033000005  Accounts receivable - Institutions"], 
+            "WN23 WL - Customer - Export": ["1033000004  Accounts receivable - Export"],   
+			"WN24 WL - Customer - Consumer": ["1033000011  Accounts Receivable - Consumer"],
+			"ZC01 MDM - Customer - Pharmaceutical": ["1033000006  Accounts receivable - Pharma"],
+			"ZC03 MDM - Customer - Direct": ["1033000003  Accounts receivable - Direct"],
+			"ZC04 MDM - Customer - Institutions": ["1033000005 Accounts receivable - Institutions"],
+			"ZC04 MDM - Customer - Institutions (Distributor)": ["1033000005 Accounts receivable - Institutions"],
+			"ZC05 MDM - Customer - Export": ["1033000004  Accounts receivable - Export"],
+			"ZC10 MDL - Customer - Pharmaceutical":["1033000006  Accounts receivable - Pharma"],
+			"ZC12 MDL - Customer - Direct": ["1033000003  Accounts receivable - Direct"],
+			"ZC13 MDL - Customer - Institutions": ["1033000005  Accounts receivable - Institutions"],
+			"ZC14 MDL - Customer - Export": ["1033000004  Accounts receivable - Export"],
+			"ZC15 MDL - Customer - Other": ["1033000005  Accounts receivable - Institutions"],
+			"ZC16 MDL - Customer - Toll": ["1033000007  Accounts Receivable - Toll Manufacturing"],
+			"ZC17 MDL - Customer - Ind. Hospital": ["1033000005  Accounts receivable - Institutions"],
+			"YC01 MDM - Customer - Pharmaceutical": ["1033000006  Accounts receivable - Pharma"],
+			"YC06 - MDSPL - Customer - DPI": ["1033000002  Accounts receivable - Medical Devices"],
+			"RD01 SPL - Regional Distributor": ["11210101  Accounts Receivable - Regional Distributor"],
+			"PK01 SPL - Local Customer": ["11210101  Accounts Receivable - Institutions"],
+			"PK05 SPL - Indirect Hospital": ["11210101  Accounts Receivable - Ind. Hospital"],
+        };
+        if (Grouping in groupings) {
+            groupings[Grouping].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlReconcilation.appendChild(option);
+            });
+        }
+    }	
+</script>
+<script language="javascript" type="text/javascript">
+function getRountineItems() {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('CMDCountryList')/items?Select=Title,ID",
+        type: "GET",
+        headers: {
+            "accept": "application / json;odata = verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $.each(response, function(key, value){
+                $("#ddlCompany").append('<option value="' + value.Id + '">' + value.Title +'</option>');
+				
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+function getImportingItems2(companyValue) {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('Dir_Servers')/items?" +
+             "$filter=substringof('" + companyValue + "', Company/Id)&$select=ID,Title,Company/Id&$expand=Company",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $('#ddlServers').empty(); // Clear the dropdown before appending new items
+            $.each(response, function(key, value) {
+                $('#ddlServers').append('<option value="' + value.ID + '">' + value.Title + ' </option>');
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+function getStatusItems2(companyValue) {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('Dir_Divisions')/items?" +
+             "$filter=substringof('" + companyValue + "', Company/Id)&$select=ID,Title,Company/Id&$expand=Company",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $('#ddlDepartment').empty(); // Clear the dropdown before appending new items
+            $.each(response, function(key, value) {
+                $('#ddlDepartment').append('<option value="' + value.ID + '">' + value.Title + ' </option>');
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+$(document).ready(function () {
+
+
+ $('#ddlCompany').change(function() {
+                    
+        var selectedCompany = $(this).val(); // Get the selected value
+
+});
+debugger
+                $.urlParam = function(name){
+                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                    if (results==null){
+                        return null;
+                    }
+                    else{
+                         return results[1] || 0;
+                    }
+                }
+
+                var ID = $.urlParam('PID');
+
+                if(ID != null)
+                {
+                  GetItems(ID);
+				  
+                  $('#btnSave').hide();
+                  $('#btnSubmit').hide();  
+           
+                }
+                else
+                {
+				
+                  $('#ddlApprovers1div').hide();
+                  $('#ddlApprovers2div').hide();
+                  $('#btnSave').show();
+                  $('#btnSubmit').show();               
+                }
+
+                $("#btnSave").click(function (e) {
+                		e.preventDefault();
+										if(ID != null)
+										{
+												UpdateProjectProposal(ID,"1");
+										}
+										else
+										{
+												CreateProjectProposal("1");
+										}
+                });
+
+                $("#btnSubmit").click(function (e) {
+                    e.preventDefault();
+					 $("#btnSubmit").prop('disabled', true);
+					debugger
+										if(ID != null)
+										{
+												UpdateProjectProposal(ID,"2");
+										}
+										else
+										{
+                                            CreateCMDForm("2");
+										}
+                });
+                $("#btnBackTo").click(function (e) {
+                      e.preventDefault();
+                      window.location= "https://martindowgroup.sharepoint.com/sites/ServiceSpot/Lists/CUSTOMERMASTERDATAMDML/AllItems.aspx";
+                });
+		  });
+function CreateCMDForm(Status) {
+            debugger
+    var checkValidation = false;
+  const SelectedAttachments = Array.from(document.querySelectorAll("input[name='Attachments']:checked"))
+            .map(cb => cb.value);
+
+
+  const Security = Array.from(document.querySelectorAll("input[name='Security']:checked"))
+            .map(cb => cb.value);
+
+    // New fields
+	var Company = $('#ddlCompany').val();
+    var Grouping = $('#ddlGrouping').val();
+    var Name = $('#txtName').val();
+    var CustomerGroup = $('#ddlCustomerGroup').val();
+	var TaxCategory =$('#ddlTaxCategory').val();
+	var IncomeTaxStatus =$('#ddlIncomeTaxStatus').val();
+    var OwnerName = $('#txtOwnerName').val();
+    var AddressLine1 = $('#txtAddressLine1').val();
+	var AddressLine2 = $('#txtAddressLine2').val();
+    var Province = $('#txtProvince').val();
+	var PostalCode = $('#txtPostalCode').val();
+    var City = $('#txtCity').val();
+    var Country = $('#ddlCountry').val();
+	var Telephone = $('#txtTelephone').val();
+	var Cell = $('#txtCell').val();
+    var Email = $('#txtEmail').val();
+	var Email1 = $('#txtEmail1').val();
+	var Email2 = $('#txtEmail2').val();
+    var Email3 = $('#txtEmail3').val();
+    var Category1 = $('#txtCategory1').val();
+    var CNIC = $('#txtCNIC').val();
+    var Category2 = $('#txtCategory2').val();
+	var DSL1 = $('#ddlDSL1').val();
+    var ValidFrom1 = $('#txtValidFrom1').val();
+    var Validto1 = $('#txtValidto1').val();
+	var DSL2 = $('#ddlDSL2').val();
+    var ValidFrom2 = $('#txtValidFrom2').val();
+    var Validto2 = $('#txtValidto2').val();
+    var DSL3 = $('#ddlDSL3').val();
+    var ValidFrom3 = $('#txtValidFrom3').val();
+    var Validto3 = $('#txtValidto3').val();
+	var DSL4 = $('#ddlDSL4').val();
+    var ValidFrom4 = $('#txtValidFrom4').val();
+    var Validto4 = $('#txtValidto4').val();
+    var FBRNTN = $('#txtFBRNTN').val();
+    var Category3 = $('#txtCategory3').val();
+    var FBRGST = $('#txtFBRGST').val();
+	var SalesOrg =$('#ddlSalesOrg').val();
+	var SalesOrg2 =$('#ddlSalesOrg2').val();
+	var SalesOrg3 =$('#ddlSalesOrg3').val();
+	var SalesOrg4 =$('#ddlSalesOrg4').val();
+	var SalesDistrict =$('#ddlSalesDistrict').val();
+    var CustomerGroup =$('#ddlCustomerGroup').val();
+	var SalesOffice =$('#ddlSalesOffice').val();
+	var SalesGroup =$('#ddlSalesGroup').val();
+	var DeliveringPlant =$('#ddlDeliveringPlant').val();
+	var Incoterms =$('#ddlincoterms').val();
+	var PaymentTerms =$('#ddlPaymentTerms').val();
+	var AcctAsst =$('#ddlAcctAsst').val();
+    var MWST =$('#ddlMWST').val();
+	var ZMWS =$('#ddlZMWS').val();
+	var ZMST =$('#ddlZMST').val();
+	var ZPK2 =$('#ddlZPK2').val();
+	var PartnerFunction1 =$('#ddlpartnerfunction1').val();
+	var PartnerFunction2 =$('#ddlpartnerfunction2').val();
+	var ReconciliationAccount =$('#ddlReconcilation').val();
+	var CreditSegment = $('#ddlCreditSegment').val();
+    var CreditLimit =$('#ddlCreditLimit').val();
+    var Limit = $('#txtLimit').val();
+	var PromissoryNote = $('#chkPromissoryNote').val();
+	var BankGuarantee = $('#chkBankGuarantee').val();
+	var InlandLC = $('#chkInlandLC').val();
+	var Cheques = $('#chkCheques').val();
+	var customer1 = $('#txtCustomerNum1').val();
+	var customer2 = $('#txtCustomerNum2').val();
+	var comment = $('#txtComment').val();
+	var CustomerType  =$('#ddlCustomerType').val();
+	
+  
+    if (Company == "") {
+        $('#ddlCompany').after('<span class="error form-control alert-danger">company is required</span>');
+        checkValidation = true;
+    }
+  
+    if (Grouping == "") {
+        $('#ddlGrouping').after('<span class="error form-control alert-danger">Grouping is required</span>');
+        checkValidation = true;
+    }
+    if (Name == "") {
+        $('#txtName').after('<span class="error form-control alert-danger">Name is required</span>');
+        checkValidation = true;
+    }
+   
+    if (CustomerGroup == "") {
+        $('#ddlCustomerGroup').after('<span class="error form-control alert-danger">CustomerGroup is required</span>');
+        checkValidation = true;
+    }
+    if (TaxCategory == "") {
+        $('#ddlTaxCategory').after('<span class="error form-control alert-danger">TaxCategory are required</span>');
+        checkValidation = true;
+    }
+	if (IncomeTaxStatus == "") {
+        $('#ddlIncomeTaxStatus').after('<span class="error form-control alert-danger">IncomeTaxStatus are required</span>');
+        checkValidation = true;
+    }
+	if (OwnerName == "") {
+        $('#txtOwnerName').after('<span class="error form-control alert-danger">OwnerName are required</span>');
+        checkValidation = true;
+    }
+	if (AddressLine1 == "") {
+        $('#txtAddressLine1').after('<span class="error form-control alert-danger">AddressLine1 are required</span>');
+        checkValidation = true;
+    }
+	if (AddressLine2 == "") {
+        $('#txtAddressLine1').after('<span class="error form-control alert-danger">AddressLine2 are required</span>');
+        checkValidation = true;
+    }
+	if (Province == "") {
+        $('#txtProvince').after('<span class="error form-control alert-danger">Province are required</span>');
+        checkValidation = true;
+    }
+	if (PostalCode == "") {
+        $('#txtPostalCode').after('<span class="error form-control alert-danger">PostalCode are required</span>');
+        checkValidation = true;
+    }
+	if (City == "") {
+        $('#txtCity').after('<span class="error form-control alert-danger">City are required</span>');
+        checkValidation = true;
+    }if (Country == "") {
+        $('#ddlCountry').after('<span class="error form-control alert-danger">Country are required</span>');
+        checkValidation = true;
+    }
+	if (Telephone == "") {
+        $('#txtTelephone').after('<span class="error form-control alert-danger">Telephone are required</span>');
+        checkValidation = true;
+    }if (Email == "") {
+        $('#txtEmail').after('<span class="error form-control alert-danger">Email are required</span>');
+        checkValidation = true;
+    }
+	if (Category1 == "") {
+        $('#txtCategory1').after('<span class="error form-control alert-danger">Category1 are required</span>');
+        checkValidation = true;
+    }
+	
+	if (Category2 == "") {
+        $('#txtCategory2').after('<span class="error form-control alert-danger">Category2 are required</span>');
+        checkValidation = true;
+    }
+	$('.error').remove();
+
+if (!FBRNTN && !CNIC) {
+    $('#txtFBRNTN').after('<span class="error form-control alert-danger">Either FBRNTN or CNIC is required</span>');
+    checkValidation = true;
+}
+	if (Category3 == "") {
+        $('#txtCategory3').after('<span class="error form-control alert-danger">Category3 are required</span>');
+        checkValidation = true;
+    }
+	if (ddlSalesOrg == "") {
+        $('#ddlSalesOrg').after('<span class="error form-control alert-danger">ddlSalesOrg are required</span>');
+        checkValidation = true;
+    }
+	if (SalesDistrict == "") {
+        $('#ddlSalesDistrict').after('<span class="error form-control alert-danger">SalesDistrict are required</span>');
+        checkValidation = true;
+    }	
+	if (SalesOffice == "") {
+        $('#ddlSalesOffice').after('<span class="error form-control alert-danger">SalesOffice are required</span>');
+        checkValidation = true;
+    }
+	if (SalesGroup == "") {
+        $('#ddlSalesGroup').after('<span class="error form-control alert-danger">SalesGroup are required</span>');
+        checkValidation = true;
+    }
+	if (DeliveringPlant == "") {
+        $('#ddlDeliveringPlant').after('<span class="error form-control alert-danger">DeliveringPlant are required</span>');
+        checkValidation = true;
+    }
+	if (Incoterms == "") {
+        $('#ddlincoterms').after('<span class="error form-control alert-danger">Incoterms are required</span>');
+        checkValidation = true;
+    }
+	if (PaymentTerms == "") {
+        $('#ddlPaymentTerms').after('<span class="error form-control alert-danger">PaymentTerms are required</span>');
+        checkValidation = true;
+    }
+	if (AcctAsst == "") {
+        $('#ddlAcctAsst').after('<span class="error form-control alert-danger">AcctAsst are required</span>');
+        checkValidation = true;
+    }if (MWST == "") {
+        $('#ddlMWST').after('<span class="error form-control alert-danger">MWST are required</span>');
+        checkValidation = true;
+    }if (ZMWS == "") {
+        $('#ddlZMWS').after('<span class="error form-control alert-danger">ZMWS are required</span>');
+        checkValidation = true;
+    }
+	if (ZMST == "") {
+        $('#ddlZMST').after('<span class="error form-control alert-danger">ZMST are required</span>');
+        checkValidation = true;
+    }
+	if (ZPK2 == "") {
+        $('#ddlZPK2').after('<span class="error form-control alert-danger">ZPK2 are required</span>');
+        checkValidation = true;
+    }
+	
+	if (ReconciliationAccount == "") {
+        $('#ddlReconcilation').after('<span class="error form-control alert-danger">ReconciliationAccount are required</span>');
+        checkValidation = true;
+    }if (CreditSegment == "") {
+        $('#ddlCreditSegment').after('<span class="error form-control alert-danger">CreditSegment are required</span>');
+        checkValidation = true;
+    }
+	<!-- if (CreditLimit == "") { -->
+        <!-- $('#ddlCreditLimit').after('<span class="error form-control alert-danger">CreditLimit are required</span>'); -->
+        <!-- checkValidation = true; -->
+    <!-- }if (Limit == "") { -->
+        <!-- $('#txtLimit').after('<span class="error form-control alert-danger">Limit are required</span>'); -->
+        <!-- checkValidation = true; -->
+    <!-- } -->
+	if (PromissoryNote == "") {
+        $('#chkPromissoryNote').after('<span class="error form-control alert-danger">PromissoryNote are required</span>');
+        checkValidation = true;
+    }
+	
+	if (BankGuarantee == "") {
+        $('#BankGuarantee').after('<span class="error form-control alert-danger">BankGuarantee are required</span>');
+        checkValidation = true;
+    }
+	if (InlandLC == "") {
+        $('#InlandLC').after('<span class="error form-control alert-danger">InlandLC are required</span>');
+        checkValidation = true;
+    }
+	if (Cheques == "") {
+        $('#chkCheques').after('<span class="error form-control alert-danger">Cheques are required</span>');
+        checkValidation = true;
+    }
+	
+    else {
+	debugger
+      
+        var itemProperties = {
+
+ 'Company': $('#ddlCompany').val(),
+   'Title': $('#txtName').val(),
+    'Grouping': $('#ddlGrouping').val(),
+    <!-- 'Name': $('#txtName').val(), -->
+
+    'CustomerGroup': $('#ddlCustomerGroup').val(),
+    'TaxCategory': $('#ddlTaxCategory').val(),
+    'IncomeTaxStatus': $('#ddlIncomeTaxStatus').val(),
+    'OwnerName': $('#txtOwnerName').val(),
+    'AddressLine1': $('#txtAddressLine1').val(),
+    'AddressLine2': $('#txtAddressLine2').val(), // Fixed the ID here to match the variable name
+    'Province': $('#txtProvince').val(),
+    'PostalCode': $('#txtPostalCode').val(),
+    'City': $('#txtCity').val(),
+    'Country': $('#ddlCountry').val(),
+    'Telephone': $('#txtTelephone').val(),
+    'Cell': $('#txtCell').val(),
+    'Email': $('#txtEmail').val(),
+	'Email1': $('#txtEmail1').val(),
+	'Email2': $('#txtEmail2').val(),
+	'Email3': $('#txtEmail3').val(),
+    'Category1': $('#txtCategory1').val(),
+    'CNIC': $('#txtCNIC').val(),
+	'OData__x0044_SL1': $('#ddlDSL1').val(),
+	'ValidFrom1': $('#txtValidFrom1').val(),
+	'Validto1': $('#txtValidto1').val(),
+	'OData__x0044_SL2': $('#ddlDSL2').val(),
+    'ValidFrom2': $('#txtValidFrom2').val(),
+	'Validto2': $('#txtValidto2').val(),
+	'OData__x0044_SL3': $('#ddlDSL3').val(),
+    'ValidFrom3': $('#txtValidFrom3').val(),
+	'Validto3': $('#txtValidto3').val(),
+	'OData__x0044_SL4': $('#ddlDSL4').val(),
+    'ValidFrom4': $('#txtValidFrom4').val(),
+	'Validto4': $('#txtValidto4').val(),
+    'Category2': $('#txtCategory2').val(),
+    'FBRNTN': $('#txtFBRNTN').val(),
+    'Category3': $('#txtCategory3').val(),
+    'FBRGST': $('#txtFBRGST').val(),
+    'SalesOrg': $('#ddlSalesOrg').val(),
+	    'SalesOrg2': $('#ddlSalesOrg2').val(),
+		    'SalesOrg3': $('#ddlSalesOrg3').val(),
+			    'SalesOrg4': $('#ddlSalesOrg4').val(),
+    'SalesDistrict': $('#ddlSalesDistrict').val(),
+    'SalesOffice': $('#ddlSalesOffice').val(),
+    'SalesGroup': $('#ddlSalesGroup').val(),
+    'DeliveringPlant': $('#ddlDeliveringPlant').val(),
+    'Incoterms': $('#ddlincoterms').val(),
+    'PaymentTerms': $('#ddlPaymentTerms').val(),
+    'AcctAssmtGrpCust': $('#ddlAcctAsst').val(),
+    'MWST': $('#ddlMWST').val(),
+    'ZMWS': $('#ddlZMWS').val(),
+    'ZMST': $('#ddlZMST').val(),
+    'ZPK': $('#ddlZPK2').val(),
+    'PartnerFunctions1': $('#ddlpartnerfunction1').val(),
+    'PartnerFunctions2': $('#ddlpartnerfunction2').val(),
+	 'ReconciliationAccount': $('#ddlReconcilation').val(),
+    'CreditSegment': $('#ddlCreditSegment').val(),
+	'SelectedAttachments': SelectedAttachments.join(";"),
+	'Security': Security.join(";"),
+     'Rules': $('#ddlCreditLimit').val(),
+    'CreditLimit': $('#txtLimit').val(),
+	<!-- 'DecisionCriteriaofLimit': $('#txtDecision').val(), -->
+    'PartnerCustomer1' : $('#txtCustomerNum1').val(),
+	'PartnerCustomer2' : $('#txtCustomerNum2').val(),
+	'Comment' : $('#txtComment').val(),
+	'CustomerType':  $('#ddlCustomerType').val(),
+
+			
+			
+
+        };
+
+// Get the base URL from _spPageContextInfo.webAbsoluteUrl, removing any path after the site
+var baseUrl = "https://martindowgroup.sharepoint.com/sites/ServiceSpot";
+
+       createListItem(baseUrl, 'CUSTOMERMASTERDATAMDML', itemProperties,
+            function (entity) {
+                debugger;
+                var itemId = entity.Id;
+
+                // Upload attachments after the item is created
+                uploadAttachments(itemId, baseUrl, function () {
+                    if (Status === "1") {
+                        alert('Your request has been draft successfully!');
+                    } else {
+                        alert('Your request has been submitted successfully!');
+                    }
+                    window.location = "../CustomerMasterData/ChangeRequestForm.aspx";
+                });
+            },
+            function (error) {
+                console.log(JSON.stringify(error));
+				 $("#btnSubmit").prop('disabled', false);
+                $("#btnSubmit").html('<i class="fas fa-paper-plane"></i> Submit');
+                alert('An error occurred. Please try again.');
+            }
+        );
+    }
+}
+function uploadAttachments(itemId, baseUrl, onComplete) {
+    var files = $('#fileAttachmentInput')[0].files; // File input element
+    if (files.length === 0) {
+        onComplete();
+        return;
+    }
+
+    var fileCount = files.length;
+    var uploadedCount = 0;
+
+    for (var i = 0; i < fileCount; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                var fileName = file.name;
+                var uniqueFileName = `${Date.now()}_${fileName}`; // Add timestamp to ensure uniqueness
+                var fileContent = e.target.result;
+
+                $.ajax({
+                    url: `${baseUrl}/_api/web/lists/getbytitle('CUSTOMERMASTERDATAMDML')/items(${itemId})/AttachmentFiles/add(FileName='${uniqueFileName}')`,
+                    method: "POST",
+                    data: fileContent,
+                    processData: false,
+                    headers: {
+                        "Accept": "application/json;odata=verbose",
+                        "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                        "content-type": "application/json;odata=verbose"
+                    },
+                    success: function () {
+                        uploadedCount++;
+                        if (uploadedCount === fileCount) {
+                            onComplete();
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error uploading file: " + fileName, error);
+                    }
+                });
+            };
+        })(file);
+        reader.readAsArrayBuffer(file);
+    }
+}
+
+  function GetItems(PID) {
+  debugger
+               var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+               var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATAMDML')/items?$filter=ID eq "+PID;
+               $.ajax({
+                url: oDataUrl,
+                type: "GET",
+                dataType: "json",
+                async: false,
+                cache: false,
+                headers: {
+                "accept": "application/json;odata=verbose"
+                },
+                success: function (data) {
+                var items = data.d.results;
+				console.log(items);
+            
+               debugger
+			if(items != null)
+                  {
+				debugger
+				
+$('#ddlCompany').val(items[0].Company);
+$('#txtName').val(items[0].Title);
+updateGrouping(items[0].Grouping);
+updateCustomerReconciliation(items[0].ReconciliationAccount);
+$('#ddlCustomerGroup').val(items[0].CustomerGroup);
+$('#ddlTaxCategory').val(items[0].TaxCategory);
+$('#ddlIncomeTaxStatus').val(items[0].IncomeTaxStatus);
+$('#txtOwnerName').val(items[0].OwnerName);
+$('#txtAddressLine1').val(items[0].AddressLine1);
+$('#txtAddressLine2').val(items[0].AddressLine2);
+$('#txtProvince').val(items[0].Province);
+$('#txtPostalCode').val(items[0].PostalCode);
+$('#txtCity').val(items[0].City);
+$('#ddlCountry').val(items[0].Country);
+$('#txtTelephone').val(items[0].Telephone);
+$('#txtCell').val(items[0].Cell);
+$('#txtEmail').val(items[0].Email);
+$('#txtEmail1').val(items[0].Email1);
+$('#txtEmail2').val(items[0].Email2);
+$('#txtEmail3').val(items[0].Email3);
+$('#txtCategory1').val(items[0].Category1);
+$('#txtCNIC').val(items[0].CNIC);
+$('#txtCategory2').val(items[0].Category2);
+$('#txtFBRNTN').val(items[0].FBRNTN);
+$('#txtCategory3').val(items[0].Category3);
+$('#txtFBRGST').val(items[0].FBRGST);
+$('#ddlDSL1').val(items[0].OData__x0044_SL1);
+$('#txtValidFrom1').val(items[0].ValidFrom1);
+$('#txtValidto1').val(items[0].Validto1);
+$('#ddlDSL2').val(items[0].DSL2);
+$('#txtValidFrom2').val(items[0].OData__x0044_SL2);
+$('#txtValidto2').val(items[0].Validto2);
+$('#ddlDSL3').val(items[0].OData__x0044_SL3);
+$('#txtValidFrom3').val(items[0].ValidFrom3);
+$('#txtValidto3').val(items[0].Validto3);
+$('#ddlDSL4').val(items[0].OData__x0044_SL4);
+$('#txtValidFrom4').val(items[0].ValidFrom4);
+$('#txtValidto4').val(items[0].Validto4);
+$('#ddlSalesOrg').val(items[0].SalesOrg);
+$('#ddlSalesOrg2').val(items[0].SalesOrg2);
+$('#ddlSalesOrg3').val(items[0].SalesOrg3);
+$('#ddlSalesOrg4').val(items[0].SalesOrg4);
+$('#ddlSalesDistrict').val(items[0].SalesDistrict);
+$('#ddlSalesOffice').val(items[0].SalesOffice);
+updateSalesGroupselected(items[0].SalesOffice,items[0].SalesGroup);
+$('#ddlDeliveringPlant').val(items[0].DeliveringPlant);
+$('#ddlincoterms').val(items[0].Incoterms);
+$('#ddlPaymentTerms').val(items[0].PaymentTerms);
+$('#ddlAcctAsst').val(items[0].AcctAssmtGrpCust);
+$('#ddlMWST').val(items[0].MWST);
+$('#ddlZMWS').val(items[0].ZMWS);
+$('#ddlZMST').val(items[0].ZMST);
+$('#ddlZPK2').val(items[0].ZPK);
+$('#ddlpartnerfunction1').val(items[0].PartnerFunctions1);
+$('#ddlpartnerfunction2').val(items[0].PartnerFunctions2);
+$('#ddlReconcilation').val(items[0].ReconciliationAccount);
+$('#ddlCreditSegment').val(items[0].CreditSegment);
+$('#txtLimit').val(items[0].CreditLimit);
+$('#ddlCreditLimit').val(items[0].Rules);
+$('#txtCustomerNum1').val(items[0].PartnerCustomer1);
+$('#txtCustomerNum2').val(items[0].PartnerCustomer2);
+$('#txtComment').val(items[0].Comment);
+$('#ddlCustomerType').val(items[0].CustomerType);
+$('#txtlevel1').val(items[0].Level1Comments|| "") + " - By " + items[0].Level1.replace("@martindow.com", "");
+$('#txtlevel2').val(items[0].Level2Comments || "")  + " - By " + items[0].Level2.replace("@martindow.com", "");
+$('#txtlevel3').val(items[0].Level3Comments || "")  + " - By " + items[0].Level3.replace("@martindow.com", "");
+$('#txtlevel4').val(items[0].Level4Comments || "")  + " - By " + items[0].Level4.replace("@martindow.com", "");
+$('#txtlevel5').val(items[0].Level5Comments || "")  + " - By " + items[0].Level5.replace("@martindow.com", "");
+$('#txtlevel6').val(items[0].Level6Comments || "")  + " - By " + items[0].Level6.replace("@martindow.com", "");
+$('#txtlevel7').val(items[0].Level7Comments || "")  + " - By " + items[0].Level7.replace("@martindow.com", "");
+	
+debugger
+let selectedAttachments = items[0].SelectedAttachments ? items[0].SelectedAttachments.split(";") : [];
+    $("input[name='Attachments']").each(function () {
+        if (selectedAttachments.includes($(this).val())) {
+            $(this).prop("checked", true);
+        }
+    });
+	
+	let security = items[0].Security ? items[0].Security.split(";") : [];
+    $("input[name='Security']").each(function () {
+        if (security.includes($(this).val())) {
+            $(this).prop("checked", true);
+        }
+    });
+	
+let fileUrl = "https://martindowgroup.sharepoint.com/";
+let itemId = items[0].ID;
+let siteUrl = "https://martindowgroup.sharepoint.com/sites/servicespot";
+let listName = "CUSTOMERMASTERDATAMDML";
+
+$.ajax({
+    url: `${siteUrl}/_api/web/lists/getbytitle('${listName}')/items(${itemId})/AttachmentFiles`,
+    method: "GET",
+    headers: {
+        "Accept": "application/json;odata=verbose"
+    },
+    success: function(data) {
+        console.log("Attachments API Response:", data); // Debugging
+        $("#attachmentContainer").empty();
+        
+        if (data.d.results.length > 0) {
+            data.d.results.forEach(file => {
+                let fileUrl = "https://martindowgroup.sharepoint.com/" + file.ServerRelativeUrl;
+                $("#attachmentContainer").append(
+                    `<div><a href="${fileUrl}" target="_blank">${file.FileName}</a></div>`
+                );
+            });
+        } else {
+            $("#attachmentContainer").html("<p>No attachments found.</p>");
+        }
+    },
+    error: function(error) {
+        console.error("Error fetching attachments: ", error);
+    }
+});
+
+DisableFormFields();
+   
+
+                if(items[0].ProjectStatusId == "1")
+                {
+									$('#btnSave').show();
+									$('#btnSubmit').show();
+                }
+                else if(items[0].ProjectStatusId == "2")
+                {
+									$('#btnApproved').show();
+                                    $('#btnRejected').show();
+									DisableFormFields();
+                }
+                else if(items[0].ProjectStatusId == "3" || items[0].ProjectStatusId == "4")
+                {
+									DisableFormFields();
+                }
+                }
+                },
+                function(error){
+                console.log(JSON.stringify(error));
+                }
+                });
+                }
+				
+ function createListItem(siteUrl,listName, itemProperties, success, failure) {
+				debugger
+										var itemType = getItemTypeForListName(listName);
+										itemProperties["__metadata"] = {"type": itemType };
+     
+	
+
+									$.ajax({
+									
+										url:siteUrl+"/_api/web/lists/getbytitle('" + listName + "')/items",
+												type: "POST",
+												contentType: "application/json;odata=verbose",
+												data: JSON.stringify(itemProperties),
+												headers: {
+                 "Accept": "application/json;odata=verbose",
+            "Content-Type": "application/json;odata=verbose",
+            "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+            "X-HTTP-Method": "POST"
+										},
+      
+										success: function (data) {
+												success(data.d);
+												
+		  console.log("Item created successfully!", data); 
+            const itemId = data.d.Id;  
+            <!-- ddAttachment(itemId, fileInput);  -->
+		
+										},
+										error: function (data) {
+												failure(data);
+										}
+									});
+							}
+		// Get List Item Type metadata
+							function getItemTypeForListName(name) {
+							debugger
+									return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("_x0020_").slice(1) + "ListItem";
+							}
+							
+   function DisableFormFields()
+							{
+		
+	$('#txtName').prop("disabled", true);
+    $('#ddlCompany').prop("disabled", true);
+	    $('#ddlGrouping').prop("disabled", true);
+    $('#ddlCustomerGroup').prop("disabled", true);
+    $('#ddlTaxCategory').prop("disabled", true);
+    $('#ddlIncomeTaxStatus').prop("disabled", true);
+    $('#txtOwnerName').prop("disabled", true);
+    $('#txtAddressLine1').prop("disabled", true);
+    $('#txtAddressLine2').prop("disabled", true);
+    $('#txtProvince').prop("disabled", true);
+    $('#txtPostalCode').prop("disabled", true);
+    $('#txtCity').prop("disabled", true);
+    $('#ddlCountry').prop("disabled", true);
+    $('#txtTelephone').prop("disabled", true);
+    $('#txtCell').prop("disabled", true);
+    $('#txtEmail').prop("disabled", true);
+	$('#txtEmail1').prop("disabled", true);
+	$('#txtEmail2').prop("disabled", true);
+	$('#txtEmail3').prop("disabled", true);
+    $('#txtCategory1').prop("disabled", true);
+    $('#txtCNIC').prop("disabled", true);
+    $('#txtCategory2').prop("disabled", true);
+    $('#txtFBRNTN').prop("disabled", true);
+    $('#txtCategory3').prop("disabled", true);
+    $('#txtFBRGST').prop("disabled", true);
+	$('#ddlDSL1').prop("disabled", true);
+	$('#ddlDSL2').prop("disabled", true);
+	$('#ddlDSL3').prop("disabled", true);
+	$('#ddlDSL4').prop("disabled", true);
+	$('#txtValidFrom1').prop("disabled", true);
+    $('#txtValidFrom2').prop("disabled", true);
+	$('#txtValidFrom3').prop("disabled", true);
+	$('#txtValidFrom4').prop("disabled", true);
+	$('#txtValidto1').prop("disabled", true);
+    $('#txtValidto2').prop("disabled", true);
+	$('#txtValidto3').prop("disabled", true);
+	$('#txtValidto4').prop("disabled", true);
+    $('#ddlSalesOrg').prop("disabled", true);
+	 $('#ddlSalesOrg2').prop("disabled", true);
+	  $('#ddlSalesOrg3').prop("disabled", true);
+	   $('#ddlSalesOrg4').prop("disabled", true);
+    $('#ddlSalesDistrict').prop("disabled", true);
+    $('#ddlSalesOffice').prop("disabled", true);
+    $('#ddlSalesGroup').prop("disabled", true);
+    $('#ddlDeliveringPlant').prop("disabled", true);
+    $('#ddlincoterms').prop("disabled", true);
+    $('#ddlPaymentTerms').prop("disabled", true);
+    $('#ddlAcctAsst').prop("disabled", true);
+    $('#ddlMWST').prop("disabled", true);
+    $('#ddlZMWS').prop("disabled", true);
+    $('#ddlZMST').prop("disabled", true);
+    $('#ddlZPK2').prop("disabled", true);
+    $('#ddlpartnerfunction1').prop("disabled", true);
+    $('#ddlpartnerfunction2').prop("disabled", true);
+    $('#ddlReconcilation').prop("disabled", true);
+    $('#ddlCreditSegment').prop("disabled", true);
+    $('#txtLimit').prop("disabled", true);
+    $('#ddlCreditLimit').prop("disabled", true);
+	$('#ddlCreditSegment2').prop("disabled", true);
+    $('#txtLimit2').prop("disabled", true);
+    $('#ddlCreditLimit').prop("disabled", true);
+	$('#txtLimitTotal').prop("disabled", true);
+    $('#txtComment').prop("disabled", true);
+    $('#txtCustomerNum1').prop("disabled", true);
+    $('#txtCustomerNum2').prop("disabled", true);
+	 $('#txtlevel1').prop("disabled", true);
+	  $('#txtlevel2').prop("disabled", true);
+	   $('#txtlevel3').prop("disabled", true);
+	    $('#txtlevel4').prop("disabled", true);
+		 $('#txtlevel5').prop("disabled", true);
+		  $('#txtlevel6').prop("disabled", true);
+		  $('#txtlevel7').prop("disabled", true);												
+							}
+							
+							
+	function updateSalesGroupselected(selectedValue, selectedGroupValue = "") {
+    debugger;
+
+    var SalesOffice = selectedValue;
+    var ddlSalesGroup = document.getElementById("ddlSalesGroup");
+
+    // Reset dropdown
+    ddlSalesGroup.innerHTML = '<option value="">-- Select --</option>';
+
+    // Mapping
+    var groupings = {
+        "1000": ["Z01 - Sales Group Karachi", "Z02 - Sales Group Hyderabad", "Z03 - Sales Group Sukkur"],
+        "2000": ["Z07 - Sales Office LHR", "Z08 - Sales Group Gujranwala", "Z06 - Sales Group Faisalabad"],
+        "3000": ["Z09 - Sales Group Rawalpindi", "Z10 - Sales Group Peshawar"],
+        "4000": ["Z04 - Sales Group Quetta"],
+        "5000": ["Z05 - Sales Group Multan"]
+    };
+
+    // Populate dropdown
+    if (groupings[SalesOffice]) {
+        groupings[SalesOffice].forEach(function (group) {
+            var option = document.createElement("option");
+            option.value = group.trim();
+            option.textContent = group;
+            ddlSalesGroup.appendChild(option);
+        });
+    }
+
+    // 👉 Set selected value if provided
+    if (selectedGroupValue) {
+        ddlSalesGroup.value = selectedGroupValue.trim();
+    }
+}
+function updateSalesGroup() {
+        var SalesOffice = document.getElementById("ddlSalesOffice").value;
+        var ddlSalesGroup = document.getElementById("ddlSalesGroup");
+
+        // Clear existing options
+        ddlSalesGroup.innerHTML = '<option value="">-- Select --</option>';
+
+        // Define ddlSalesGroup-group mappings
+        var groupings = {
+	 
+            "2000": ["Z07 - Sales Office LHR","Z08 - Sales Group Gujranwala","Z06 - Sales Group Faisalabad"],
+            "3000": ["Z09 - Sales Group Rawalpindi","Z10 - Sales Group Peshawar"],
+            "4000": ["Z04 - Sales Group Quetta"],
+			"1000": ["Z01 - Sales Group Karachi","Z02 - Sales Group Hyderabad","Z03 - Sales Group Sukkur"],
+	        "5000": ["Z05 - Sales Group Multan"]
+			  };
+
+        // Populate Grouping dropdown based on selected SalesDistrict
+        if (SalesOffice in groupings) {
+            groupings[SalesOffice].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlSalesGroup.appendChild(option);
+            });
+        }
+    }
+<!-- document.addEventListener("DOMContentLoaded", function () { -->
+
+    <!-- // Read selected values from SharePoint form -->
+    <!-- var selectedCompany = $("select[title='Company'] option:selected").text().trim(); -->
+    <!-- var selectedGrouping = $("select[title='Grouping'] option:selected").text().trim(); -->
+    <!-- var selectedSalesDistrict = $("select[title='SalesDistrict'] option:selected").text().trim(); -->
+    <!-- var selectedRecon = $("select[title='Reconciliation'] option:selected").text().trim(); -->
+
+    <!-- // SET company dropdown -->
+    <!-- if (selectedCompany) { -->
+        <!-- document.getElementById("ddlCompany").value = selectedCompany; -->
+        <!-- updateGrouping();  // Load grouping based on company -->
+    <!-- } -->
+
+    <!-- // SET grouping dropdown (after delay because grouping loads dynamically) -->
+    <!-- setTimeout(function () { -->
+        <!-- if (selectedGrouping) { -->
+            <!-- document.getElementById("ddlGrouping").value = selectedGrouping; -->
+            <!-- updateCustomerReconciliation(); // Load reconciliation based on grouping -->
+        <!-- } -->
+    <!-- }, 150); -->
+
+    <!-- // SET sales district -->
+    <!-- if (selectedSalesDistrict) { -->
+        <!-- document.getElementById("ddlSalesDistrict").value = selectedSalesDistrict; -->
+    <!-- } -->
+
+    <!-- // SET reconciliation dropdown (after load) -->
+    <!-- setTimeout(function () { -->
+        <!-- if (selectedRecon) { -->
+            <!-- document.getElementById("ddlReconcilation").value = selectedRecon; -->
+        <!-- } -->
+    <!-- }, 300); -->
+
+<!-- }); -->
+</script>
+<style>
+    .step {
+        display: none;
+    }
+    .step.active {
+        display: block;
+    }
+</style>

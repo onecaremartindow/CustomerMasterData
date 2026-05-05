@@ -1,0 +1,1410 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+        body {
+            background-color: #9E9E9E;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .step-header {
+            background: #9E9E9E;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+		  .step-header2 {
+            background:#9E9E9E;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+         
+        }
+	
+	
+        h1, h2, h3 {
+            color: #333;
+        }
+        .form-group label {
+            
+        }
+        .required::after {
+            content: " *";
+            color: red;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+<div id="divProjectCMD" class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-8 col-xl-10">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Customer Master Data Form</h1>
+                </div>
+			
+            </div>
+			
+            <form id="multiStepForm">
+                <div class="step active" id="step1">
+			
+                    <h2 class="text-center step-header2">Organization</h2>
+					
+					<div class="row">
+                      <div class="form-group col-md-2">
+        <label for="ddlCompany">Company Code *</label>
+        <select id="ddlCompany" class="form-control" required onchange="updateGrouping()">
+            <option value="">-- Select --</option>
+            <option value="MDL">1000-MDL</option>
+            <option value="MDM">2000-MDM</option>
+            <option value="MDSPL">3000-MDSPL</option>
+            <option value="SPL">4000-SPL</option>
+            <option value="WLX">5000-WLX</option>
+        </select>
+    </div>
+    
+    <div class="form-group col-md-4">
+        <label for="ddlGrouping">Grouping *</label>
+        <select id="ddlGrouping" class="form-control" required>
+            <option value="">-- Select --</option>
+        </select>
+    </div>
+</div>
+					</div>
+					
+					    <div class="step" id="step2">
+			
+					
+						 <div class="row">
+				<div class="step-header text-center">
+                <h4>000000 - BP General Role</h4>
+            </div>
+            </div>
+			
+            			<div class="row">
+                
+				  <div class="form-group col-md-3">
+                        <label for="txtName"> Name <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtName"  required>
+                    </div>
+			
+                  <div class="form-group col-md-3">
+                      <label for="ddlBusinessVertical">  Business Vertical <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlBusinessVertical" id="ddlBusinessVertical" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="Chemical">Chemical</option>
+				 <option value="Diagnostics">Diagnostics</option>
+                        </select>
+				  
+				  </div>
+				  
+				  <div class="form-group col-md-3">
+                  
+				    <label for="ddlCustomerGroup">  Customer Group <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlCustomerGroup" id="ddlCustomerGroup" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="A1">A1</option>
+				 <option value="A2">A2</option>
+				 <option value="A3">A3</option>
+				 <option value="B1">B1</option>
+				 <option value="B2">B2</option>
+				 <option value="B3">B3</option>
+				 <option value="C1">C1</option>
+				 <option value="C2">C2</option>
+				 <option value="C3">C3</option>
+                        </select>
+						</div>
+                  <div class="form-group col-md-3">
+                    <label for="ddlTaxCategory">  Tax Category <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                    <select name="ddlTaxCategory" id="ddlTaxCategory" class="form-control"required>
+                  <option value="">-- Select --</option>
+				 <option value="Aop">Aop</option>
+				 <option value="Individual">Individual</option>
+				 <option value="Company">Company</option>
+				 <option value="Company-Govt">Company-Govt</option>
+				 <option value="Company-Trust">Company-Trust</option>
+                        </select>
+				
+				</div>
+				<div class="form-group col-md-3">
+                        <label for="ddlIncomeTaxStatus">  Income Tax Status <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlIncomeTaxStatus" id="ddlIncomeTaxStatus" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="Filer">Filer</option>
+				 <option value="Non-Filer">Non-Filer</option>
+                        </select>
+                    </div>
+					
+					  <div class="form-group col-md-6">
+                        <label for="inputCode"> Owner Name (if any) <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <input type="text" class="form-control" id="txtOwnerName"  required>
+                    </div>
+				</div>
+				
+					
+					<div class="row">
+				    <div class="form-group col-md-6">
+                        <label for="txtAddressLine1">Address Line 1 *</label>
+                        <input type="text" class="form-control" id="txtAddressLine1" required>
+                    </div>
+					
+					 <div class="form-group col-md-6">
+                        <label for="txtAddressLine2">Address Line 2 *</label>
+                        <input type="text" class="form-control" id="txtAddressLine2" required>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="txtProvince">Province<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtProvince" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtPostalCode">Postal Code<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtPostalCode" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtCity">City<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtCity" >               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtCountry">Country<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtCountry" >               
+                    </div>
+					</div>
+					
+				
+						
+					<div class="row">
+					
+					
+					 <div class="form-group col-md-3">
+                        <label for="txtTelephone">Telephone<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtTelephone" required>               
+                    </div>
+					<div class="form-group col-md-3">
+                        <label for="txtCell">Cell<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtCell" required >               
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="txtCountry">Email(One valid email address)<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtEmail" required >               
+                    </div>
+					
+					</div>
+
+
+<script>
+    let isOpen = false;
+
+    function toggleSection() {
+        isOpen = !isOpen;
+        document.getElementById("communicationSection").style.display = isOpen ? "block" : "none";
+        document.getElementById("toggleButton").textContent = isOpen ? "-" : "+";
+    }
+</script>
+
+					
+					 <div class="col">
+                        <h5>Tax Number:</h5>
+                    </div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory1">  Category 1 <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                      <input type="text" id="txtCategory1" value="PK01" disabled>
+                    </div>
+				<div class="form-group col-md-3">
+                        <label for="txtCategory1">CNIC<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtCNIC" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory2">  Category 2 <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                     
+                     <input type="text" id="txtCategory2" value="PK02" disabled>
+
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="txtFBRNTN">FBR-NTN<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtFBRNTN" >               
+                    </div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="txtCategory3">  Category 3 <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                     
+                     <input type="text" id="txtCategory3" value="PK03" disabled>
+
+                    </div>
+					
+				<div class="form-group col-md-3">
+                        <label for="txtFBRGST">FBR-GST<span style="color: #dc3545;font-weight: bold;"></span></label>
+                        <input type="text" class="form-control" id="txtFBRGST" >               
+                    </div>	
+					</div>
+				</div>
+
+                <div class="step" id="step3">
+				 <div class="row">
+				<div class="step-header text-center">
+                    <h4>ZCUS01 - Customer Role </h4>
+                </div>
+				
+				
+			
+            </div>
+                   		<div class="row">
+            
+				<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Sales Area:</h5>
+						</div>
+				</div>
+				
+                  		<div class="row">
+				<div class="form-group col-md-6">
+                        <label for="ddlSalesOrg">  Sales Org(2000)-Dist. Channel & Product Division <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesOrg" id="ddlSalesOrg" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="10-Locals & 20-Chemicals">10-Locals & 20-Chemicals</option>
+				 <option value="10-Locals & 20-Chemicals">10-Locals & 30-Diagnostics</option>
+				 <option value="10-Locals & 20-Chemicals">10-Locals & 40-Services</option>
+				 <option value="10-Locals & 20-Chemicals">20-Export & 20-Chemicals</option>
+				 <option value="10-Locals & 20-Chemicals">20-Export & 20-Chemicals</option>
+				 <option value="10-Locals & 20-Chemicals">10-Locals & 20-Chemicals</option>
+				
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlDivisionExt">  Division Extension (if any) <span style="color: #dc3545;">*</span></label>
+                        <select name="ddlDivisionExt" id="ddlDivisionExt" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="30-Diagnostics">30-Diagnostics</option>
+				 <option value="20-Chemicals-Services">20-Chemicals & 40-Services</option>
+				 <option value="20-Chemicals">20-Chemicals</option>
+				 <option value="40-Services">40-Services </option>
+				 <option value="30-Diagnostics & 40-Services">30-Diagnostics & 40-Services</option>
+                        </select>
+                    </div>
+				</div>
+
+					<div class="row">
+            
+				<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Order:</h5>
+						</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesDistrict">  Sales District <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesDistrict" id="ddlSalesDistrict" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="1000">1000</option>
+				 <option value="2000">2000</option>
+				 <option value="3000">3000</option>
+				 <option value="4000">4000</option>
+				 <option value="5000">5000</option>
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlCustomerGroup">  Customer Group <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlCustomerGroup" id="ddlCustomerGroup" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="01">01</option>
+				 <option value="02">02</option>
+				 <option value="03">03</option>
+				 <option value="04">04</option>
+				 <option value="05">05</option>
+				 <option value="06">06</option>
+				 <option value="07">07</option>
+				 <option value="08">08</option>
+				 <option value="09">09</option>
+				 <option value="10">10</option>
+				 <option value="11">11</option>
+				 <option value="12">12</option>
+				 <option value="13">13</option>
+				 <option value="14">14</option>
+				
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesOffice">  Sales Office (Must align with Sales District) <span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesOffice" id="ddlSalesOffice" class="form-control"required>
+                            <option value="">-- Select --</option>
+				  <option value="1000">1000</option>
+				 <option value="2000">2000</option>
+				 <option value="3000">3000</option>
+				 <option value="4000">4000</option>
+				 <option value="5000">5000</option>
+				
+                        </select>
+                    </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlSalesGroup">  Sales Group (Must align with Sales Office)<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlSalesGroup" id="ddlSalesGroup" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="Z01">Z01</option>
+				 <option value="Z02">Z02</option>
+				 <option value="Z03">Z03</option>
+				 <option value="Z04">Z04</option>
+				 <option value="Z05">Z05</option>
+				 <option value="Z06">Z06</option>
+				
+                        </select>
+                    </div>
+				</div>
+				
+				
+				 <div class="row">
+              
+	<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Shipping:</h5>
+						</div>
+				              
+			  </div>
+				
+				 <div class="row">
+                
+				<div class="form-group col-md-6">
+                        <label for="ddlDeliveringPlant">  Delivering Plant<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlDeliveringPlant" id="ddlDeliveringPlant" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="3100">3100</option>
+				 <option value="3200">3200</option>
+				 <option value="3300">3300</option>				
+                        </select>
+                    </div>
+			
+			</div>
+				<div class="row">
+            
+				<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Billing:</h5>
+						</div>
+				</div>
+				
+				
+				
+				<div class="row">
+					<div class="form-group col-md-3">
+                        <label for="ddlincoterms">Incoterms<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlincoterms" id="ddlincoterms" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="LCL">LCL</option>
+				 <option value="CFR">CFR</option>
+				 <option value="CIP">CIP</option>			
+		         <option value="CPT">CPT</option>	
+		         <option value="DAF">DAF</option>	
+		         <option value="DDF">DDF</option>	
+		         <option value="DDU">DDU</option>	
+		         <option value="DEQ">DEQ</option>	
+		         <option value="DES">DES</option>			 
+			 	 <option value="EXW">EXW</option>		
+			     <option value="FAS">FAS</option>		
+			     <option value="FCA">FCA</option>		
+	         	 <option value="FH">FH</option>		
+			     <option value="FOB">FOB</option>		
+			     <option value="UN">UN</option>		
+                        </select>
+                    </div>
+						<div class="form-group col-md-3">
+                        <label for="ddlPaymentTerms"> Payment Terms<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlPaymentTerms" id="ddlPaymentTerms" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="C001">C001</option>
+				 <option value="C002">C002</option>
+				 <option value="C003">C003</option>				  
+                        </select>
+                    </div>
+				
+				</div>
+				
+			
+			
+				<div class="row">
+                   	<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Accounting:</h5>
+						</div>
+					
+                </div>
+					<div class="form-group col-md-6">
+                        <label for="ddlAcctAsst"> Acct Assmt Grp Cust.<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlAcctAsst" id="ddlAcctAsst" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="01">01</option>
+				 <option value="02">02</option>
+				 <option value="03">03</option>				  
+                        </select>
+                    </div>
+				
+			
+			 <div class="row">
+              
+						<div class="form-group col-md-2" style="background:gray;">
+                        <h5>Output Tax:</h5>
+						</div>
+                </div>
+			
+				<div class="row">
+				
+					<div class="form-group col-md-3">
+                        <label for="ddlMWST"> MWST<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlMWST" id="ddlMWST" class="form-control"required>
+                <option value="">-- Select --</option>
+				<option value="0">0</option>
+				 <option value="1">1</option>
+				 <option value="2">2</option>
+				 <option value="3">3</option>				  
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="ddlZMWS">ZMWS<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZMWS" id="ddlZMWS" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="1">1</option>
+				 <option value="2">2</option>
+				 <option value="3">3</option>				  
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="ddlZMST">ZMST<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZMST" id="ddlZMST" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="3">3</option>
+				 <option value="4">4</option>
+				 <option value="5">5</option>			
+                 <option value="6">6</option>	
+                 <option value="7">7</option>	
+ 
+                        </select>
+                    </div>
+					
+					<div class="form-group col-md-3">
+                        <label for="ddlZPK2"> ZPK2<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlZPK2" id="ddlZPK2" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="1">1</option>
+				 <option value="0">0</option>
+							  
+                        </select>
+                    </div>
+				
+				<div class="row">
+            
+				<div class="form-group col-md-4" style="background:gray;">
+                        <h5>Partner Functions:</h5>
+						</div>
+				</div>
+				
+				<div class="row">
+				   <div class="form-group col-md-6">
+                        <label for="ddlpartnerfunction1">Partner Functions 1<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlpartnerfunction1" id="ddlpartnerfunction1" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="SP">SP</option>
+				 <option value="BP">BP</option>
+				 <option value="PY">PY</option>			
+                 <option value="SH">SH</option>	
+                 <option value="CP">CP</option>	
+				 <option value="AW">AW</option>	
+			     <option value="ED">ED</option>	
+ 
+                        </select>
+                    </div>
+				 <div class="form-group col-md-6 ">
+                        <label for="ddlpartnerfunction2">Partner Functions 2<span style="color: #dc3545;font-weight: bold;">*</span></label>
+                        <select name="ddlpartnerfunction2" id="ddlpartnerfunction2" class="form-control"required>
+                            <option value="">-- Select --</option>
+				 <option value="SP">SP</option>
+				 <option value="BP">BP</option>
+				 <option value="PY">PY</option>			
+                 <option value="SH">SH</option>	
+                 <option value="CP">CP</option>	
+				 <option value="AW">AW</option>	
+			     <option value="ED">ED</option>	
+ 
+                        </select>
+                    </div>
+				
+				</div>
+				</div>
+				
+				
+			</div>
+
+                <div class="step" id="step4">
+				
+                    <h2 class="text-center  step-header2">ZFICO1</h2>
+		
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="ddlReconcilation">Reconciliation Account*</label>
+               <input type="text" id="txtReconciliation" class="form-control" value="1033000001" disabled>
+
+        </div>
+</div>
+
+   <h2 class="text-center  step-header2">UKM000- SAP Credit Mgmt</h2>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="txtCreditSegment">Credit Segment*</label>
+            
+			
+               <input type="text" id="txtCreditSegment" class="form-control" value="ZAK 1 Credit Segment MDM" disabled>
+		
+        </div>
+   
+   <div class="form-group col-md-4">
+    <label>Credit Limit & Control</label>
+    <select id="ddlCreditLimit" class="form-control" onchange="toggleLimitField()">
+        <option value="notDefined">Limit Not Defined</option>
+        <option value="defined">Limit Defined</option>
+    </select>
+</div>
+
+<div class="form-group col-md-4">
+    <label for="txtLimit">Limit *</label>
+    <input type="text" class="form-control" id="txtLimit" disabled>
+    <small id="limitError" class="text-danger" style="display: none;">Limit is required</small>
+</div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-8">
+            <label>Security (for Distributor/Trader)</label>
+            <div class="form-check">
+                <input type="checkbox" id="chkPromissoryNote" class="form-check-input">
+                <label for="chkPromissoryNote" class="form-check-label">Promissory Note Attached</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkBankGuarantee" class="form-check-input">
+                <label for="chkBankGuarantee" >Bank Guarantee Up to the Credit Limit</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkInlandLC" class="form-check-input">
+                <label for="chkInlandLC" >Inland LC for Each Transaction</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="chkCheques" class="form-check-input" checked>
+                <label for="chkCheques" >Undated Cheques Covering the Credit Limit</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+	
+	
+	 <div class="container">
+        <h2>Attached Documents (tick the relevant)</h2>
+            <label><input type="checkbox" name="document" value="agreement"> Copy of Agreement (If Distributor)</label><br>
+            <label><input type="checkbox" name="document" value="ntn"> NTN / CNIC / FTN Attached, ATL (ST & IT), Exempt. Cert. (if applicable)</label><br>
+            <label><input type="checkbox" name="document" value="bank_statement"> Account Statement / Bank Account Maintenance Certificate. [for Credit Customers (Trader/Dist)]</label><br>
+            <label><input type="checkbox" name="document" value="security"> Please Attach Security [For Credit Business Only (Trader/Dist.) Original Instrument Submit to Treasury [Receiving Attached]</label><br>
+            <label><input type="checkbox" name="document" value="forecast"> 6 Month approved Business Forecast (for credit customer)</label><br>
+            <label><input type="checkbox" name="document" value="account_opening"> Account Opening request letter from customer, PO / Tender copy (where applicable)</label><br><br>
+
+            <p class="note">Note: All Fields are mandatory & should be filled before print & approval. (Avoid overwriting)</p>
+       <div class="form-group col-md-6">
+					
+               			<input type="file" id="fileAttachmentInput" multiple />
+						   </div>
+    </div>
+
+        <p class="text-danger"><strong>Note:</strong> All Fields are mandatory & should be filled.</p>
+    </div>
+	
+	
+
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" disabled>Previous</button>
+    <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">Next</button>
+	
+</div>
+<script>
+    let currentStep = 1;
+    const totalSteps = document.querySelectorAll(".step").length;
+
+    function changeStep(step) {
+        let newStep = currentStep + step;
+        if (newStep < 1 || newStep > totalSteps) return; 
+
+        // Hide current step
+        document.getElementById(`step${currentStep}`).classList.remove("active");
+
+        // Update step number
+        currentStep = newStep;
+
+        // Show new step
+        document.getElementById(`step${currentStep}`).classList.add("active");
+
+        // Handle button states
+        document.getElementById("prevBtn").disabled = currentStep === 1;
+        
+        let nextBtn = document.getElementById("nextBtn");
+
+        if (currentStep === totalSteps) {
+            nextBtn.textContent = "Submit";
+            nextBtn.type = "submit"; // Change to submit button
+            nextBtn.classList.remove("btn-primary");
+            nextBtn.classList.add("btn-success");
+            nextBtn.onclick = null; // Remove onclick function for submission
+        } else {
+            nextBtn.textContent = "Next";
+            nextBtn.type = "button"; // Keep it as a normal button
+            nextBtn.classList.remove("btn-success");
+            nextBtn.classList.add("btn-primary");
+            nextBtn.onclick = function() { changeStep(1); }; // Reassign onclick
+        }
+    }
+</script>
+<script>
+    function toggleLimitField() {
+        var ddl = document.getElementById("ddlCreditLimit");
+        var txtLimit = document.getElementById("txtLimit");
+        var limitError = document.getElementById("limitError");
+
+        if (ddl.value === "defined") {
+            txtLimit.disabled = false;
+            txtLimit.setAttribute("required", "required");
+        } else {
+            txtLimit.disabled = true;
+            txtLimit.removeAttribute("required");
+            txtLimit.value = ""; // Clear the field when disabled
+            limitError.style.display = "none";
+        }
+    }
+
+    // Optional: Add validation on form submit
+    document.querySelector("form")?.addEventListener("submit", function (event) {
+        var txtLimit = document.getElementById("txtLimit");
+        var limitError = document.getElementById("limitError");
+
+        if (!txtLimit.disabled && txtLimit.value.trim() === "") {
+            limitError.style.display = "block";
+            event.preventDefault(); // Prevent form submission
+        } else {
+            limitError.style.display = "none";
+        }
+    });
+	
+	 function updateGrouping() {
+        var company = document.getElementById("ddlCompany").value;
+        var ddlGrouping = document.getElementById("ddlGrouping");
+
+        // Clear existing options
+        ddlGrouping.innerHTML = '<option value="">-- Select --</option>';
+
+        // Define company-group mappings
+        var groupings = {
+            "MDL": ["1000"],  // Example mapping for MDL
+            "MDM": ["2000"],  // Example mapping for MDM
+            "MDSPL": ["3000"], // Example mapping for MDSPL
+            "SPL": ["4000"],          // Example mapping for SPL
+            "WLX": ["5000"]           // Example mapping for WLX
+        };
+
+        // Populate Grouping dropdown based on selected company
+        if (company in groupings) {
+            groupings[company].forEach(function (group) {
+                var option = document.createElement("option");
+                option.value = group;
+                option.textContent = group;
+                ddlGrouping.appendChild(option);
+            });
+        }
+    }
+</script>
+<script language="javascript" type="text/javascript">
+
+
+function getRountineItems() {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('CMDCountryList')/items?Select=Title,ID",
+        type: "GET",
+        headers: {
+            "accept": "application / json;odata = verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $.each(response, function(key, value){
+                $("#ddlCompany").append('<option value="' + value.Id + '">' + value.Title +'</option>');
+				
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+
+function getImportingItems2(companyValue) {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('Dir_Servers')/items?" +
+             "$filter=substringof('" + companyValue + "', Company/Id)&$select=ID,Title,Company/Id&$expand=Company",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $('#ddlServers').empty(); // Clear the dropdown before appending new items
+            $.each(response, function(key, value) {
+                $('#ddlServers').append('<option value="' + value.ID + '">' + value.Title + ' </option>');
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+function getStatusItems2(companyValue) {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('Dir_Divisions')/items?" +
+             "$filter=substringof('" + companyValue + "', Company/Id)&$select=ID,Title,Company/Id&$expand=Company",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function(data) {
+            var response = data.d.results;
+            $('#ddlDepartment').empty(); // Clear the dropdown before appending new items
+            $.each(response, function(key, value) {
+                $('#ddlDepartment').append('<option value="' + value.ID + '">' + value.Title + ' </option>');
+            });
+        },
+        error: function(error) {
+            alert(JSON.stringify(error));
+        }
+    });
+}
+$(document).ready(function () {
+
+getRountineItems();
+//getStatusItems();
+//getImportingItems();
+
+ $('#ddlCompany').change(function() {
+                    
+        var selectedCompany = $(this).val(); // Get the selected value
+
+        // Only call getImportingItems if a company is selected
+        if (selectedCompany !== '') {
+            
+            getImportingItems2(selectedCompany);
+            getStatusItems2(selectedCompany)
+        }
+});
+
+                $.urlParam = function(name){
+                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                    if (results==null){
+                        return null;
+                    }
+                    else{
+                         return results[1] || 0;
+                    }
+                }
+
+                var ID = $.urlParam('PID');
+
+                if(ID != null)
+                {
+                  GetItems(ID);
+				  
+                  $('#btnSave').hide();
+                  $('#btnSave').hide();
+                 getPersonOrGroupItems();
+  
+                 getPersonOrGroupItems2();
+                }
+                else
+                {
+				
+                  $('#ddlApprovers1div').hide();
+                  $('#ddlApprovers2div').hide();
+                  $('#btnSave').show();
+                  $('#btnSubmit').show();               
+                }
+
+                $("#btnSave").click(function (e) {
+                		e.preventDefault();
+										if(ID != null)
+										{
+												UpdateProjectProposal(ID,"1");
+										}
+										else
+										{
+												CreateProjectProposal("1");
+										}
+                });
+
+                $("#btnSubmit").click(function (e) {
+                    e.preventDefault();
+					debugger
+										if(ID != null)
+										{
+												UpdateProjectProposal(ID,"2");
+										}
+										else
+										{
+                                            CreateSAPForm("2");
+										}
+                });
+
+				$("#btnApproved").click(function (e) {
+                    e.preventDefault();
+                    ApprovedByROPS(ID,"3");
+                });
+
+                $("#btnRejected").click(function (e) {
+                    e.preventDefault();
+                    ApprovedByROPS(ID,"4");
+                });
+
+                $("#btnBackTo").click(function (e) {
+                      e.preventDefault();
+                      window.location= "https://martindowgroup.sharepoint.com/sites/ServiceSpot/Lists/SAP%20Authorization%20Form/AllItems.aspx";
+                });
+		  });
+
+   
+function CreateSAPForm(Status) {
+            debugger
+    var checkValidation = false;
+  const selectedCompanies = Array.from(document.querySelectorAll("input[name='Companies']:checked"))
+            .map(cb => cb.value);
+
+ 
+    
+    // New fields
+	<!-- var UserType =$('#ddlUserType').val(); -->
+	
+    var EmployeeCode = $('#txtEmployeeCode').val();
+    var Description = $('#txtDescription').val();
+    var SapUserId = $('#txtSapUserId').val();
+    var Company = $('#ddlCompany').val();
+    var Department = $('#ddlDepartment').val();
+    var Servers = $('#ddlServers').val();
+    var AccessType = $('#ddlAccessType').val();
+	
+    var RequestType = $('#ddlRequestType').val();
+var CostCentre = $('#txtCostCenter').val();
+var Cellphone = $('#txtCellNo').val();
+var Telepone = $('#txtExtension').val();
+
+
+
+
+    if (AccessType == "Create SAP Account" && CostCentre=="") {
+       // $('#ddlAccessType').after('<span class="error form-control alert-danger">Cost Centre is mandatory for creation of account</span>');
+		alert('Cost Centre is mandatory for creation of account!');  
+					
+        checkValidation = true;
+    }
+ 
+    <!-- if (UserType == "") { -->
+        <!-- $('#ddlUserType').after('<span class="error form-control alert-danger">UserType Type is required</span>'); -->
+        <!-- checkValidation = true; -->
+    <!-- } -->
+  
+     if (AccessType == "") {
+        $('#ddlAccessType').after('<span class="error form-control alert-danger">Access Type is required</span>');
+        checkValidation = true;
+    }
+  
+    if (EmployeeCode == "") {
+        $('#txtEmployeeCode').after('<span class="error form-control alert-danger">Employee Code is required</span>');
+        checkValidation = true;
+    }
+    if (Description == "") {
+        $('#txtDescription').after('<span class="error form-control alert-danger">Description is required</span>');
+        checkValidation = true;
+    }
+        if (Company == "") {
+        $('#ddlCompany').after('<span class="error form-control alert-danger">Company is required</span>');
+        checkValidation = true;
+    }
+    if (Department == "") {
+        $('#ddlDepartment').after('<span class="error form-control alert-danger">Department is required</span>');
+        checkValidation = true;
+    }
+    if (Servers == "") {
+        $('#ddlServers').after('<span class="error form-control alert-danger">Servers are required</span>');
+        checkValidation = true;
+    }
+
+    if (checkValidation) {
+        return;
+    } else {
+        // Existing item properties
+        var itemProperties = {
+
+            // New item properties
+			 'Title': EmployeeCode,
+            <!-- 'UserType': $("#ddlUserType option:selected").text(), -->
+			
+            'Description': Description,
+            'SAPUserID': SapUserId,
+            'CostCentre': CostCentre,
+            'Cell': Cellphone,
+            'Telephone_x2013_Ext': Telepone,
+            <!-- 'AccessType': $("#ddlRequestType option:selected").text(),   -->
+		   'ChangeType': $("#ddlRequestType option:selected").text(), 
+		'ModuleName': $("#ddlAccessType option:selected").text(),  	 
+	 'CompanyId': parseInt($("#ddlCompany option:selected").val(), 10),  // Convert to integer -->
+	 'DepartmentId': parseInt($("#ddlDepartment option:selected").val(), 10),  // Convert to integer -->
+     'ServersId': parseInt($("#ddlServers option:selected").val(), 10) ,
+	 'SelectedCompanies': selectedCompanies.join(";"),
+	 'Status':'Form Initiated',
+	 'Steps':'0'
+	
+ 
+   <!-- 'SelectedCompanies': selectedCompanies.join(";") // Storing selected companies as a semicolon-separated string -->
+     
+ 
+          //   'DepartmentId': $("#ddlDepartment option:selected").val(),  
+            //'ServersId': $("#ddlServers option:selected").val()  
+			
+			
+
+        };
+
+// Get the base URL from _spPageContextInfo.webAbsoluteUrl, removing any path after the site
+var baseUrl = "https://martindowgroup.sharepoint.com/sites/ServiceSpot";
+
+       createListItem(baseUrl, 'CRF', itemProperties,
+            function (entity) {
+                debugger;
+                var itemId = entity.Id;
+
+                // Upload attachments after the item is created
+                uploadAttachments(itemId, baseUrl, function () {
+                    if (Status === "1") {
+                        alert('Your request has been draft successfully!');
+                    } else {
+                        alert('Your request has been submitted successfully!');
+                    }
+                    window.location = "../Pages/ChangeRequestForm.aspx";
+                });
+            },
+            function (error) {
+                console.log(JSON.stringify(error));
+            }
+        );
+    }
+}
+function uploadAttachments(itemId, baseUrl, onComplete) {
+    var files = $('#fileAttachmentInput')[0].files; // File input element
+    if (files.length === 0) {
+        onComplete();
+        return;
+    }
+
+    var fileCount = files.length;
+    var uploadedCount = 0;
+
+    for (var i = 0; i < fileCount; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.onload = (function (file) {
+            return function (e) {
+                var fileName = file.name;
+                var uniqueFileName = `${Date.now()}_${fileName}`; // Add timestamp to ensure uniqueness
+                var fileContent = e.target.result;
+
+                $.ajax({
+                    url: `${baseUrl}/_api/web/lists/getbytitle('CRF')/items(${itemId})/AttachmentFiles/add(FileName='${uniqueFileName}')`,
+                    method: "POST",
+                    data: fileContent,
+                    processData: false,
+                    headers: {
+                        "Accept": "application/json;odata=verbose",
+                        "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                        "content-type": "application/json;odata=verbose"
+                    },
+                    success: function () {
+                        uploadedCount++;
+                        if (uploadedCount === fileCount) {
+                            onComplete();
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error uploading file: " + fileName, error);
+                    }
+                });
+            };
+        })(file);
+        reader.readAsArrayBuffer(file);
+    }
+}
+
+
+function UpdateProjectProposal(uId,Status)
+			{
+			debugger
+                  var checkValidation = false;
+  const selectedCompanies = Array.from(document.querySelectorAll("input[name='Companies']:checked"))
+            .map(cb => cb.value);
+
+ 
+    
+    // New fields
+	
+ var reviewer1Email = $("#ddlApprovers option:selected").data('email');  // Retrieves the email of the selected person from ddlApprovers
+    var reviewer2Email = $("#ddlApprovers2 option:selected").data('email');  // Retrieves the email of the selected person from ddlApprovers2
+
+	 <!-- var UserType =$('#ddlUserType').val();  -->
+    
+	var EmployeeCode = $('#txtEmployeeCode').val();
+     var Description = $('#txtDescription').val();
+     var SapUserId = $('#txtSapUserId').val(); 
+     var Company = $('#ddlCompany').val(); 
+     var Department = $('#ddlDepartment').val(); 
+     var Servers = $('#ddlServers').val(); 
+     var AccessType = $('#ddlAccessType').val(); 
+	
+     var RequestType = $('#ddlRequestType').val(); 
+ var CostCentre = $('#txtCostCenter').val(); 
+ var Cellphone = $('#txtCellNo').val(); 
+ var Telepone = $('#txtExtension').val(); 
+
+  
+     if (reviewer1Email == "") {
+        $('#ddlApprovers').after('<span class="error form-control alert-danger">Reviewer1 is required</span>');
+        checkValidation = true;
+    }
+	    if (checkValidation) {
+        return;
+    } 
+    else
+                  {
+				  
+				  debugger
+												$.ajax({
+														url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('CRF')/items(" + uId + ")",  
+														method: "POST",  
+														data: JSON.stringify({  
+																'__metadata': {  
+																		'type': 'SP.Data.CRFListItem'  
+																},
+																'Title':$('#txtEmployeeCode').val(), 
+														
+															
+            <!-- 'UserType': $("#ddlUserType option:selected").text(), -->
+            'Description': Description,
+            'SAPUserID': SapUserId,
+            <!-- 'CostCentre': CostCentre, -->
+            <!-- 'Cell': Cellphone, -->
+            <!-- 'Telephone_x2013_Ext': Telepone, -->
+            <!-- <!-- 'AccessType': $("#ddlRequestType option:selected").text(),   --> -->
+	       
+
+		   <!-- 'ChangeType': $("#ddlRequestType option:selected").text(),  -->
+	        
+			
+			<!-- 'ModuleName': $("#ddlAccessType option:selected").text(),   -->
+	 
+	// 'CompanyId': parseInt($("#ddlCompany option:selected").val(), 10),  // Convert to integer -->
+	 //'DepartmentId': parseInt($("#ddlDepartment option:selected").val(), 10),  // Convert to integer -->
+     //'ServersId': parseInt($("#ddlServers option:selected").val(), 10) ,
+	   'Reviewer1': reviewer1Email,
+        'Reviewer2': reviewer2Email,
+		'Status':'Reviewer Assigned',
+		 'Steps':'0'
+															 
+														}),  
+														headers: {  
+																"accept": "application/json;odata=verbose",  
+																"content-type": "application/json;odata=verbose",  
+																"X-RequestDigest": $("#__REQUESTDIGEST").val(),  
+																"IF-MATCH": "*",             //Overrite the changes in the sharepoint list item
+																"X-HTTP-Method": "MERGE"      // Specifies the update operation in sharepoint list
+														},  
+														success: function(data) {
+                                                                if(Status == "1")
+                                                                {
+                                                                    alert('Your request has been draft successfully!');  
+                                                                }
+                                                                else
+                                                                {
+                                                                    alert('Your request has been submitted successfully!');  
+                                                                }																 
+																//window.location = "../SitePages/ProjectProposals.aspx";
+														},  
+														error: function(error) {  
+																console.log(JSON.stringify(error));  
+											
+														}  
+											});
+									}
+							}
+function getPersonOrGroupItemsFilled(selectedEmail) {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/siteusers",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function (data) {
+            var response = data.d.results;
+            $('#ddlApprovers').empty(); // Clear the dropdown before appending new items
+            
+            $('#ddlApprovers').append('<option value="">-- Please Select --</option>');
+       
+            $.each(response, function (key, value) {
+                var selectedAttr = value.Email === selectedEmail ? ' selected' : '';
+                $('#ddlApprovers').append('<option value="' + value.Id + '" data-email="' + value.Email + '"' + selectedAttr + '>' + value.Title + ' (' + value.Email + ')</option>');
+            });
+        },
+        error: function (error) {
+            console.error("Error fetching users:", error);
+        }
+    });
+}
+
+function getPersonOrGroupItems() {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/siteusers",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function (data) {
+            var response = data.d.results;
+            $('#ddlApprovers').empty(); // Clear the dropdown before appending new items
+			
+			     $('#ddlApprovers').append('<option value="">-- Please Select --</option>');
+       
+            $.each(response, function (key, value) {
+                <!-- $('#ddlApprovers').append('<option value="' + value.Id + '">' + value.Title + ' (' + value.Email + ')</option>'); -->
+    
+	$('#ddlApprovers').append('<option value="' + value.Id + '" data-email="' + value.Email + '">' + value.Title + ' (' + value.Email + ')</option>');
+               
+		   });
+        },
+        error: function (error) {
+            console.error("Error fetching users:", error);
+        }
+    });
+}
+function getPersonOrGroupItems2() {
+    $.ajax({
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/siteusers",
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose",
+        },
+        success: function (data) {
+            var response = data.d.results;
+            $('#ddlApprovers2').empty(); // Clear the dropdown before appending new items
+            $('#ddlApprovers2').append('<option value="">-- Please Select --</option>');
+       
+	   $.each(response, function (key, value) {
+                <!-- $('#ddlApprovers2').append('<option value="' + value.Id + '">' + value.Title + ' (' + value.Email + ')</option>'); -->
+
+	$('#ddlApprovers2').append('<option value="' + value.Id + '" data-email="' + value.Email + '">' + value.Title + ' (' + value.Email + ')</option>');
+             
+            });
+        },
+        error: function (error) {
+            console.error("Error fetching users:", error);
+        }
+    });
+}
+  function GetItems(PID) {
+  debugger
+               var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+               var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CRF')/items?$filter=ID eq "+PID;
+               $.ajax({
+                url: oDataUrl,
+                type: "GET",
+                dataType: "json",
+                async: false,
+                cache: false,
+                headers: {
+                "accept": "application/json;odata=verbose"
+                },
+                success: function (data) {
+                var items = data.d.results;
+				console.log(items);
+            
+debugger
+
+
+			if(items != null)
+                  {
+				  
+                    <!-- $('#ddlUserType').val(items[0].UserType); -->
+					
+                       $('#ddlRequestType').val(items[0].ChangeType);
+					   $('#ddlApprovers').val(items[0].Reviewer1);
+					   $('#ddlApprovers2').val(items[0].Reviewer2);
+					   
+                       $('#ddlAccessType').val(items[0].ModuleName);
+                    
+                    $('#txtEmployeeCode').val(items[0].Title);
+
+                    $('#txtDescription').val(items[0].Description);
+                    
+                    $('#txtSapUserId').val(items[0].SAPUserID);
+                    
+                    
+  $('#txtCostCenter').val(items[0].CostCentre);
+  $('#txtCellNo').val(items[0].Cellphone);
+$('#txtExtension').val(items[0].Extension);
+                
+                       <!-- $('#ddlServers').val(parseInt(items[0].ServersId)); -->
+					  if ($('#ddlServers option[value="' + items[0].ServersId + '"]').length === 0) {
+    $('#ddlServers').append(`<option value="${items[0].ServersId}">Server ${items[0].ServersId}</option>`);
+}
+<!-- $('#ddlServers').val(items[0].ServersId); -->
+					   
+					   
+                       $('#ddlDepartment').val(parseInt(items[0].DepartmentId));
+                       $('#ddlCompany').val(items[0].SelectedCompanies);
+                	
+					
+			
+
+
+DisableFormFields();
+   
+
+                if(items[0].ProjectStatusId == "1")
+                {
+									$('#btnSave').show();
+									$('#btnSubmit').show();
+                }
+                else if(items[0].ProjectStatusId == "2")
+                {
+									$('#btnApproved').show();
+                                    $('#btnRejected').show();
+									DisableFormFields();
+                }
+                else if(items[0].ProjectStatusId == "3" || items[0].ProjectStatusId == "4")
+                {
+									DisableFormFields();
+                }
+                }
+                },
+                function(error){
+                console.log(JSON.stringify(error));
+                }
+                });
+                }
+				
+ function createListItem(siteUrl,listName, itemProperties, success, failure) {
+				debugger
+										var itemType = getItemTypeForListName(listName);
+										itemProperties["__metadata"] = {"type": itemType };
+     
+	
+
+									$.ajax({
+									
+										url:siteUrl+"/_api/web/lists/getbytitle('" + listName + "')/items",
+												type: "POST",
+												contentType: "application/json;odata=verbose",
+												data: JSON.stringify(itemProperties),
+												headers: {
+                 "Accept": "application/json;odata=verbose",
+            "Content-Type": "application/json;odata=verbose",
+            "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+            "X-HTTP-Method": "POST"
+										},
+      
+										success: function (data) {
+												success(data.d);
+												
+		  console.log("Item created successfully!", data); 
+            const itemId = data.d.Id;  
+            <!-- ddAttachment(itemId, fileInput);  -->
+		
+										},
+										error: function (data) {
+												failure(data);
+										}
+									});
+							}
+		// Get List Item Type metadata
+							function getItemTypeForListName(name) {
+							debugger
+									return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("_x0020_").slice(1) + "ListItem";
+							}
+
+					
+
+		function addAttachment(itemId, fileInput) {
+		debugger
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const arrayBuffer = e.target.result;
+        const fileName = file.name;
+
+        $.ajax({
+            url: `${siteUrl}/_api/web/lists/getbytitle('${listName}')/items(${itemId})/AttachmentFiles/add(FileName='${fileName}')`,
+						           
+		   type: "POST",
+            data: arrayBuffer,
+            processData: false,
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                "Content-Type": file.type
+            },
+            success: function (data) {
+                console.log("Attachment added successfully!", data);
+            },
+            error: function (error) {
+                console.log("Error adding attachment:", error);
+            }
+        });
+    };
+    reader.readAsArrayBuffer(file);
+}
+		function DisableFormFields()
+							{
+									$('#ddlRequestType').prop("disabled", true);
+									$('#ddlAccessType').prop( "disabled", true );
+									<!-- $('#ddlUserType').prop( "disabled", true ); -->
+									
+									$('#txtEmployeeCode').prop( "disabled", true );
+									$('#txtCellNo').prop( "disabled", true );
+									$('#txtExtension').prop( "disabled", true );
+									$('#ddlCompany').prop( "disabled", true );
+									$('#ddlDepartment').prop( "disabled", true );
+									$('#ddlServers').prop( "disabled", true );
+									$('#txtCellNo').prop( "disabled", true );
+									$('#txtCostCenter').prop( "disabled", true );
+									$('#txtSapUserId').prop( "disabled", true );
+									
+									
+									
+									$('#txtDescription').prop( "disabled", true );
+									
+							}			
+
+</script>
+<style>
+    .step {
+        display: none;
+    }
+    .step.active {
+        display: block;
+    }
+</style>

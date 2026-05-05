@@ -1,0 +1,522 @@
+ <html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<!--External js file to get data from SharePoint List -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.jqueryui.min.css">
+<style>
+    #DeltaPlaceHolderPageTitleInTitleArea {
+        display: none;
+    }
+    #sideNavBox {DISPLAY: none}  
+    #contentBox {MARGIN-LEFT: 5px}
+    a:visited {
+      color: blue;
+    }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        background-color:#dee2e6;
+    }
+</style>
+</head>
+<body>
+<section>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-12">
+          <div class="row">
+            <div class="col text-center">
+              <h1>Customer Master Data Life Science</h1>
+            </div>
+          </div>
+          <ul class="nav nav-tabs" role="tablist">
+    <!-- <li class="nav-item">  -->
+       <!-- <a class="nav-link active" data-toggle="tab" href="#menu1"><b>Draft (<span id="spanDraft">0</span>)</b></a>  -->
+    <!-- </li>  -->
+
+     <li class="nav-item"> 
+      <a class="nav-link active" data-toggle="tab" href="#menu2"><b>In-Progress (<span id="spanProgress">0</span>)</b></a>
+     </li>
+	 <li class="nav-item"> 
+      <a class="nav-link" data-toggle="tab" href="#menu3"><b>Step Back (<span id="spanStepBack">0</span>)</b></a>
+     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1"><b>Rejected (<span id="spanPending">0</span>)</b></a>
+    </li>
+	
+	   <li class="nav-item">
+       <a class="nav-link" data-toggle="tab" href="#menu5"><b>Completed (<span id="SpanCompleted">0</span>)</b></a> 
+     </li> 
+  </ul>
+		 <div class="form-group row"></div>	
+		 
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane"><br>
+      <table id="tbProjectProposalDraft" class="table table-bordered table-striped" width="100%">
+            <thead>
+                <tr>
+
+                          <th>ID</th>
+                            <th>Group</th>
+						   <th>Customer</th>
+                 			 <th>City</th>
+						  <th>Created Date</th>
+						  <th>Modified Date</th>
+						     <th>Status</th>	
+							 <th>Comments</th>
+						  
+                </tr>
+            </thead>
+        </table>
+		</div>
+		 <div id="menu3" class="tab-pane"><br>
+      <table id="tbProjectProposalStepBack" class="table table-bordered table-striped" width="100%">
+            <thead>
+                <tr>
+
+                          <th>ID</th>
+                            <th>Group</th>
+						   <th>Customer</th>
+                 			 <th>City</th>
+						  <th>Created Date</th>
+						  <th>Modified Date</th>
+						     <th>Status</th>	
+							 <th>Comments</th>
+						  
+                </tr>
+            </thead>
+        </table>
+		</div>
+		  <div id="menu2" class="tab-pane active"><br>
+
+    <table id="tbProjectProposalReady" class="table table-bordered table-striped" width="100%">
+            <thead>
+                <tr>
+
+                             <th>ID</th>
+                            <th>Group</th>
+						   <th>Customer</th>
+                 			 <th>City</th>
+						  <th>Created Date</th>
+						  <th>Modified Date</th>
+						     <th>Status</th>	
+							 <th>Comments</th>
+                </tr>
+            </thead>
+        </table>
+  </div>
+    <div id="menu5" class="tab-pane"><br>
+    <table id="tbProjectProposalFinal" class="table table-bordered table-striped" width="100%">
+            <thead>
+                <tr>
+
+                              <th>ID</th>
+                            <th>Group</th>
+						   <th>Customer</th>
+                 			 <th>City</th>
+						  <th>Created Date</th>
+						  <th>Modified Date</th>
+						     <th>Status</th>	
+                         <th>Comments</th> 							 
+                </tr>
+            </thead>
+        </table>
+  </div>
+  </div>	  
+        </div>
+      </div>
+  </section>
+</body>
+</html>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        GetProjectProposalDraftItems();
+		GetProjectProposalStepBackItems();
+		GetProjectProposalReadyItems(); 
+		GetProjectProposalCompletedItems(); 
+
+        $("#btnCreateProjectProposal").click(function (e) {
+			e.preventDefault();
+			window.location= "../Site/CreateProjectProposal.aspx";
+		});
+    });
+			function DisableFormFields()
+							{
+									$('#txtProjectTitle').prop("disabled", true);
+									$('#ddlLeadPrincipleInvestigator').prop( "disabled", true );
+									$('#ddlStatus').prop( "disabled", true );
+									$('#ddlFundingType').prop( "disabled", true );
+									$('#chkRequestHeadOfDepartment').prop( "disabled", true );
+									$('#chklocalcorelaboratories').prop( "disabled", true );
+									$('#chkBiostaticsCore').prop( "disabled", true );
+									$('#chkClinicalResearchCore').prop( "disabled", true );
+									$('#chkGenomicsCore').prop( "disabled", true );
+									$('#chkmagingCore').prop( "disabled", true );
+							}
+							
+	 function GetProjectProposalDraftItems() {
+	     debugger
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+
+	
+	var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATA')/items?$select=ID,Steps,Grouping,Title,City,Created,Modified,Status,Level1Comments,Level2Comments,Level3Comments,Level4Comments,Level5Comments,Level6Comments,Level7Comments&$filter=Status eq 'Rejected'";
+    $.ajax({
+        url: oDataUrl,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        cache: false,
+        headers: {
+        "accept": "application/json;odata=verbose"
+        },
+        success: function (data) {
+            var items = data.d.results;
+                if(items != null)
+                  {
+                    $('#spanPending').text(items.length);  
+                    try {
+                      debugger
+    const items = data.d.results.map(item => ({
+    ID: item.Id,
+    Steps: item.Steps ? item.Steps : 'N/A',
+	City :item.City,
+    Title:item.Title,
+  	Status:item.Status ? item.Status : 'N/A',
+	Grouping:item.Grouping,
+	Created:item.Created,
+	Modified:item.Modified,
+   
+ Comments: [
+    item.Level1Comments,
+    item.Level2Comments,
+    item.Level3Comments,
+    item.Level4Comments,
+    item.Level5Comments,
+    item.Level6Comments,
+    item.Level7Comments
+  ].filter(Boolean).join('<br>')
+	
+	
+  
+}));
+                            $('#tbProjectProposalDraft').DataTable({
+                                "aaData": items,
+                                "aoColumns": [
+                                {
+                                "mData": "ID",
+                                "mRender": function ( url, type, full )  {
+                                    return  '<a href="../CustomerMasterData/CMD-MDSPLStatus.aspx?PID='+url+'">CM-000' + url + '</a>';
+                                }
+                                },        
+                          
+							 {
+                                "mData": "Grouping"
+                                },
+								 {
+                                "mData": "Title"
+                                },
+								{
+                                "mData": "City"
+                                },
+								{
+                                "mData": "Created"
+                                },
+								{
+                                "mData": "Modified"
+                                },
+						  
+								{
+                                "mData": "Status"
+                                },
+								{ "mData": "Comments" } 
+
+                                ],
+                            });
+
+                    } catch (e) {
+                        alert(e.message);
+                    }
+          }
+        },
+        function(error){
+                console.log(JSON.stringify(error));
+        }
+        });
+    }
+		
+
+
+//stepback
+
+function GetProjectProposalStepBackItems() {
+	     debugger
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+
+	
+	var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATA')/items?$select=ID,Steps,Grouping,Title,City,Created,Modified,Status,Level1Comments,Level2Comments,Level3Comments,Level4Comments,Level5Comments,Level6Comments,Level7Comments&$filter=Status eq 'Step Back'";
+    $.ajax({
+        url: oDataUrl,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        cache: false,
+        headers: {
+        "accept": "application/json;odata=verbose"
+        },
+        success: function (data) {
+            var items = data.d.results;
+                if(items != null)
+                  {
+                    $('#spanStepBack').text(items.length);  
+                    try {
+                      debugger
+    const items = data.d.results.map(item => ({
+    ID: item.Id,
+    Steps: item.Steps ? item.Steps : 'N/A',
+	City :item.City,
+    Title:item.Title,
+  	Status:item.Status ? item.Status : 'N/A',
+	Grouping:item.Grouping,
+	Created:item.Created,
+	Modified:item.Modified,
+   
+ Comments: [
+    item.Level1Comments,
+    item.Level2Comments,
+    item.Level3Comments,
+    item.Level4Comments,
+    item.Level5Comments,
+    item.Level6Comments,
+    item.Level7Comments
+  ].filter(Boolean).join('<br>')
+	
+	
+  
+}));
+                            $('#tbProjectProposalStepBack').DataTable({
+                                "aaData": items,
+                                "aoColumns": [
+                                {
+                                "mData": "ID",
+                                "mRender": function ( url, type, full )  {
+                                    return  '<a href="../CustomerMasterData/CMD-MDSPLStatus.aspx?PID='+url+'">CM-000' + url + '</a>';
+                                }
+                                },        
+                          
+							 {
+                                "mData": "Grouping"
+                                },
+								 {
+                                "mData": "Title"
+                                },
+								{
+                                "mData": "City"
+                                },
+								{
+                                "mData": "Created"
+                                },
+								{
+                                "mData": "Modified"
+                                },
+						  
+								{
+                                "mData": "Status"
+                                },
+								{ "mData": "Comments" } 
+
+                                ],
+                            });
+
+                    } catch (e) {
+                        alert(e.message);
+                    }
+          }
+        },
+        function(error){
+                console.log(JSON.stringify(error));
+        }
+        });
+    }
+		
+    function GetProjectProposalReadyItems() {
+	    debugger
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+
+	var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATA')/items?$select=ID,Steps,Grouping,Title,City,Created,Modified,Status,Level1Comments,Level2Comments,Level3Comments,Level4Comments,Level5Comments,Level6Comments,Level7Comments&$filter=Steps ne '10' and Status ne 'Step Back'";
+
+    $.ajax({
+        url: oDataUrl,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        cache: false,
+        headers: {
+        "accept": "application/json;odata=verbose"
+        },
+        success: function (data) {
+            var items = data.d.results;
+                if(items != null)
+                  {
+                    $('#spanProgress').text(items.length);  
+                    try {
+                      debugger
+    const items = data.d.results.map(item => ({
+    ID: item.Id,
+    Steps: item.Steps ? item.Steps : 'N/A',
+    Title:item.Title,
+	City :item.City,
+  	Status:item.Status ? item.Status : 'N/A',
+	Grouping:item.Grouping,
+Created: item.Created ? new Date(item.Created).toLocaleDateString() : 'N/A',
+Modified: item.Modified ? new Date(item.Modified).toLocaleDateString() : 'N/A',
+
+	 Comments: [
+    item.Level1Comments,
+    item.Level2Comments,
+    item.Level3Comments,
+    item.Level4Comments,
+    item.Level5Comments,
+    item.Level6Comments,
+    item.Level7Comments
+  ].filter(Boolean).join('<br>')
+	
+}));
+                            $('#tbProjectProposalReady').DataTable({
+                                "aaData": items,
+                                "aoColumns": [
+                                {
+                                "mData": "ID",
+                                "mRender": function ( url, type, full )  {
+                                    return  '<a href="../CustomerMasterData/CMD-MDSPL.aspx?PID='+url+'">CM-000' + url + '</a>';
+                                }
+                                },        
+                          
+						 {
+                                "mData": "Grouping"
+                                },
+								 {
+                                "mData": "Title"
+                                },
+								{
+                                "mData": "City"
+                                },
+								{
+                                "mData": "Created"
+                                },
+								{
+                                "mData": "Modified"
+                                },
+						  
+								{
+                                "mData": "Status"
+                                },
+								{ "mData": "Comments" } 
+							
+							
+								
+                                ],
+                            });
+
+                    } catch (e) {
+                        alert(e.message);
+                    }
+          }
+        },
+        function(error){
+                console.log(JSON.stringify(error));
+        }
+        });
+    }
+	
+
+ function GetProjectProposalCompletedItems() {
+     debugger
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+    
+	
+	
+	var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATA')/items?$select=ID,Steps,Grouping,Title,City,Created,Modified,Status,Level1Comments,Level2Comments,Level3Comments,Level4Comments,Level5Comments,Level6Comments,Level7Comments&$filter=Steps eq '10'";
+    $.ajax({
+        url: oDataUrl,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        cache: false,
+        headers: {
+        "accept": "application/json;odata=verbose"
+        },
+        success: function (data) {
+            var items = data.d.results;
+                if(items != null)
+                  {
+                    $('#SpanCompleted').text(items.length);  
+                    try {
+                      debugger
+    const items = data.d.results.map(item => ({
+  ID: item.Id,
+    Steps: item.Steps ? item.Steps : 'N/A',
+	City :item.City,
+    Title:item.Title,
+  	Status:item.Status ? item.Status : 'N/A',
+	Grouping:item.Grouping,
+	Created: item.Created ? new Date(item.Created).toLocaleDateString() : 'N/A',
+   Modified: item.Modified ? new Date(item.Modified).toLocaleDateString() : 'N/A',
+	 Comments: [
+    item.Level1Comments,
+    item.Level2Comments,
+    item.Level3Comments,
+    item.Level4Comments,
+    item.Level5Comments,
+    item.Level6Comments,
+    item.Level7Comments
+  ].filter(Boolean).join('<br>')
+	
+}));
+                            $('#tbProjectProposalFinal').DataTable({
+                                "aaData": items,
+                                "aoColumns": [
+                                {
+                                "mData": "ID",
+                                "mRender": function ( url, type, full )  {
+                                    return  '<a href="../CustomerMasterData/CMD-MDSPL.aspx?PID='+url+'">CM-000' + url + '</a>';
+                                }
+                                },        
+                          
+						  
+						        {
+                                "mData": "Grouping"
+                                },
+								 {
+                                "mData": "Title"
+                                },
+								{
+                                "mData": "City"
+                                },
+								{
+                                "mData": "Created"
+                                },
+								{
+                                "mData": "Modified"
+                                },
+						  
+								{
+                                "mData": "Status"
+                                },
+								{ "mData": "Comments" } 
+		
+								
+                                ],
+                            });
+
+                    } catch (e) {
+                        alert(e.message);
+                    }
+          }
+        },
+        function(error){
+                console.log(JSON.stringify(error));
+        }
+        });
+    }
+  </script>

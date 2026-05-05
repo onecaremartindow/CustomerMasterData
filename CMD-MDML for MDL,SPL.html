@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery (compatible with DataTables 1.10.12) -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- DATATABLES -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <style>
+        #DeltaPlaceHolderPageTitleInTitleArea { display: none; }
+        #sideNavBox { display: none; }
+        #contentBox { margin-left: 5px; }
+    </style>
+</head>
+<body>
+<section>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Customer Master Data Pharmaceutical - MDL</h1>
+                </div>
+            </div>
+            <!-- TABS -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#menu2"><b>In-Progress (<span id="spanProgress">0</span>)</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu3"><b>Step Back (<span id="spanStepBack">0</span>)</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1"><b>Rejected (<span id="spanPending">0</span>)</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu5"><b>Completed (<span id="SpanCompleted">0</span>)</b></a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!-- Rejected -->
+                <div id="menu1" class="tab-pane"><br>
+                    <table id="tbProjectProposalDraft" class="table table-bordered table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Group</th>
+                                <th>Customer</th>
+                                <th>City</th>
+                                <th>Created Date</th>
+                                <th>Modified Date</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- Step Back -->
+                <div id="menu3" class="tab-pane"><br>
+                    <table id="tbProjectProposalStepBack" class="table table-bordered table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Group</th>
+                                <th>Customer</th>
+                                <th>City</th>
+                                <th>Created Date</th>
+                                <th>Modified Date</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- In Progress -->
+                <div id="menu2" class="tab-pane active"><br>
+                    <table id="tbProjectProposalReady" class="table table-bordered table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Group</th>
+                                <th>Customer</th>
+                                <th>City</th>
+                                <th>Created Date</th>
+                                <th>Modified Date</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- Completed -->
+                <div id="menu5" class="tab-pane"><br>
+                    <table id="tbProjectProposalFinal" class="table table-bordered table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Group</th>
+                                <th>Customer</th>
+                                <th>City</th>
+                                <th>Created Date</th>
+                                <th>Modified Date</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+    loadRejected();
+    loadStepBack();
+    loadReady();
+    loadCompleted();
+});
+function loadTable(tableId, items, linkPath) {
+    if ($.fn.DataTable.isDataTable(tableId)) {
+        $(tableId).DataTable().clear().destroy();
+    }
+    $(tableId).DataTable({
+        aaData: items,
+        aoColumns: [
+            {
+                mData: "ID",
+                mRender: function(id) {
+                    return '<a href="' + linkPath + id + '">CM-000' + id + '</a>';
+                }
+            },
+            { mData: "Grouping" },
+            { mData: "Title" },
+            { mData: "City" },
+            { mData: "Created" },
+            { mData: "Modified" },
+            { mData: "Status" },
+            { mData: "Comments" }
+        ]
+    });
+}
+function fetchItems(filter, spanId, tableId, linkPath) {
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+    var url = siteUrl + "/_api/web/lists/getbytitle('CUSTOMERMASTERDATAMDML')/items?$select=ID,Company,Steps,Grouping,Title,City,Created,Modified,Status,Level1Comments,Level2Comments,Level3Comments,Level4Comments,Level5Comments,Level6Comments,Level7Comments&$filter=" + filter;
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        headers: { "accept": "application/json;odata=verbose" },
+        success: function(data) {
+            var results = data.d.results.map(item => ({
+                ID: item.Id,
+                Grouping: item.Grouping,
+                Title: item.Title,
+                City: item.City,
+                Status: item.Status,
+				Company : item.Company,
+                Created: item.Created ? new Date(item.Created).toLocaleDateString() : "N/A",
+                Modified: item.Modified ? new Date(item.Modified).toLocaleDateString() : "N/A",
+                Comments: [
+                    item.Level1Comments, item.Level2Comments, item.Level3Comments,
+                    item.Level4Comments, item.Level5Comments, item.Level6Comments,
+                    item.Level7Comments
+                ].filter(Boolean).join('<br>')
+            }));
+            $(spanId).text(results.length);
+            loadTable(tableId, results, linkPath);
+        }
+    });
+}
+function loadRejected() {
+    <!-- fetchItems("Status eq 'Rejected'", '#spanPending', '#tbProjectProposalDraft', '../CustomerMasterData/CMD-MDMLStatus.aspx?PID='); -->
+	fetchItems("Status eq 'Rejected' and (Company eq 'MDL' or Company eq 'SPL')",'#spanPending','#tbProjectProposalDraft','../CustomerMasterData/CMD-MDMLStatus.aspx?PID='
+);
+}
+
+function loadStepBack() {
+    fetchItems("Status eq 'Step Back' and (Company eq 'MDL' or Company eq 'SPL')", '#spanStepBack', '#tbProjectProposalStepBack', '../CustomerMasterData/CMD-MDMLStatus.aspx?PID=');
+}
+
+function loadReady() {
+    fetchItems("Steps ne '10' and Status ne 'Step Back'and (Company eq 'MDL' or Company eq 'SPL')", '#spanProgress', '#tbProjectProposalReady', '../CustomerMasterData/CMDMDML.aspx?PID=');
+}
+
+function loadCompleted() {
+    fetchItems("Steps eq '10' and (Company eq 'MDL' or Company eq 'SPL')", '#SpanCompleted', '#tbProjectProposalFinal', '../CustomerMasterData/CMDMDML.aspx?PID=');
+}
+</script>
+</html>
